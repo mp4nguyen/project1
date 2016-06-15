@@ -1,0 +1,35 @@
+<div class="portlet box green portlet-datatable ng-scope">
+    <div class="portlet-title">
+        <div class="caption bold uppercase">
+            <h4>Company list</h4>
+            <span class="caption-subject ng-binding"></span>
+            <!-- <span class="caption-helper font-yellow-lemon"></span> -->
+        </div>
+        <div class="actions">
+            <a class="btn red-thunderbird btn-sm" (click)="newOrEditDetail()">
+                New Company
+            </a>
+            <!-- <a class="btn btn-circle btn-icon-only btn-default fullscreen" href="javascript:;" data-original-title="" title=""></a> -->
+        </div>
+    </div>
+    <div class="portlet-body">				
+		<table class="table table-striped table-bordered table-hover order-column">
+            <thead>
+                <tr>
+                    <th>Company Name</th>
+                    <th>Address</th>
+                    <th>District</th>
+                    <th>City</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="#company of companies" (click)="newOrEditDetail(company)" >
+                    <td>{{company.companyName}}</td>
+                    <td>{{company.address}}</td>
+                    <td>{{company.suburbDistrict}}</td>
+                    <td>{{company.stateProvince}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

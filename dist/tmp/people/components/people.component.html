@@ -1,0 +1,48 @@
+<form class="form-horizontal" #form = "ngForm" [ngFormModel]="myForm" (ngSubmit) = "submit()" >
+    <h3 class="form-section">Person Info</h3>
+    <div class="row">
+        <div class="col-md-4">
+            <my-input [isSubmitted]="isSubmitted" [options]="components[0]"></my-input>
+        </div>
+        <div class="col-md-4">
+            <my-input [isSubmitted]="isSubmitted" [options]="components[1]"></my-input>
+        </div>
+        <div class="col-md-4">
+            <my-input [isSubmitted]="isSubmitted" [options]="components[2]"></my-input>
+        </div>
+    </div> 
+    <div class="row">
+        <div class="col-md-4">
+            <my-input [isSubmitted]="isSubmitted" [options]="components[3]"></my-input>
+        </div>
+        <div class="col-md-4">
+            <my-input [isSubmitted]="isSubmitted" [options]="components[4]"></my-input>
+        </div>        
+    </div>
+    <h3 class="form-section">Contact</h3>
+    <div class="row">
+        <div class="col-md-4">
+            <my-input [isSubmitted]="isSubmitted" [options]="components[5]"></my-input>
+        </div>
+        <div class="col-md-4">
+            <my-input [isSubmitted]="isSubmitted" [options]="components[6]"></my-input>
+        </div>    
+        <div class="col-md-4">
+            <p>email here !</p>
+        </div>            
+    </div>                
+    <h3 class="form-section">Other Info</h3>                                              
+    <div class="row">
+        <div class="col-md-4">
+            <my-input [isSubmitted]="isSubmitted" [options]="components[7]"></my-input>
+        </div>
+        <div class="col-md-4">    
+            <my-input [isSubmitted]="isSubmitted" [options]="components[8]"></my-input>
+        </div>
+        <div class="col-md-4">    
+            <my-input [isSubmitted]="isSubmitted" [options]="components[9]"></my-input>
+        </div>    
+    </div>
+    <h3 class="form-section">Address</h3>
+    <address [address]="addressObject" (addressControlGroup)="addressControlGroup($event)"></address>
+</form>

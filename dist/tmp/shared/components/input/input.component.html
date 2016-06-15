@@ -1,0 +1,63 @@
+<span [ngSwitch]="htmlElementType">
+	<template [ngSwitchWhen]="'input'">
+		<div class="form-group" [ngClass] = "{'has-error': isSubmitted && !innputObject.valid}">               
+		    <label [ngClass]="options.labelColumnClass" >{{options.title}}:
+		        <span [hidden]="!options.isRequired" class="required"> * </span>
+		    </label>
+		    <div [ngClass]="options.inputColumnClass">
+		        <input [type]="computeInputSubType()" class="form-control" [attr.placeholder]="options.placeholder" [ngFormControl] = "options.control" #innputObject = "ngForm">
+		        <div [hidden]="!(isSubmitted && !innputObject.valid)" class="alert alert-danger">{{options.requiredMsg}}</div>
+		    </div>    
+		</div>	
+	</template>
+	<template [ngSwitchWhen]="'date'">
+		<div class="form-group" [ngClass] = "{'has-error': isSubmitted && !innputObject.valid}">               
+		    <label [ngClass]="options.labelColumnClass" >{{options.title}}:
+		        <span [hidden]="!options.isRequired" class="required"> * </span>
+		    </label>
+		    <div [ngClass]="options.inputColumnClass">
+		        <p-calendar [showIcon]="true" [monthNavigator]="true" [yearNavigator]="true"></p-calendar>
+		    </div>    
+		</div>	
+	</template>	
+	<template [ngSwitchWhen]="'time'">
+		<div class="form-group" [ngClass] = "{'has-error': isSubmitted && !innputObject.valid}">               
+		    <label [ngClass]="options.labelColumnClass" >{{options.title}}:
+		        <span [hidden]="!options.isRequired" class="required"> * </span>
+		    </label>
+		    <div [ngClass]="options.inputColumnClass">
+		        <p-calendar [showIcon]="true" timeFormat="hh:mm tt z" timeControlType="select" [timeOnly]="true"></p-calendar>
+		    </div>    
+		</div>	
+	</template>	
+
+	<!-- <p-calendar [(ngModel)]="date11" dateFormat="mm/dd/yy" timeFormat="hh:mm tt z" timeControlType="select" [horizontalTimeControls]="true"></p-calendar>
+ -->
+	<template [ngSwitchWhen]="'checkbox'">
+		<div class="form-group" [ngClass] = "{'has-error': isSubmitted && !innputObject.valid}">               
+		    <label [ngClass]="options.labelColumnClass" >{{options.title}}:
+		        <span [hidden]="!options.isRequired" class="required"> * </span>
+		    </label>
+		    <div [ngClass]="options.inputColumnClass">
+		        <input type="checkbox" class="form-control" [ngFormControl] = "options.control" #innputObject = "ngForm" ngTrueValue = 1 ngFalseValue = 0>
+		        <div [hidden]="!(isSubmitted && !innputObject.valid)" class="alert alert-danger">{{options.requiredMsg}}</div>
+		    </div>    
+		</div>	
+	</template>	
+	<template [ngSwitchWhen]="'option'">
+		<div class="form-group" [ngClass] = "{'has-error': isSubmitted && !innputObject.valid}">               
+		    <label [ngClass]="options.labelColumnClass" >{{options.title}}:
+		        <span [hidden]="!options.isRequired" class="required"> * </span>
+		    </label>
+		    <div [ngClass]="options.inputColumnClass">
+		    	<select class="form-control" [ngFormControl]="options.control" #innputObject="ngForm">
+					<option *ngFor="#key of options.values" [value]="key[options.returnProperty]">{{key[options.displayProperty]}}</option>
+				</select>		        
+		        <div [hidden]="!(isSubmitted && !innputObject.valid)" class="alert alert-danger">{{options.requiredMsg}}</div>
+		    </div>    
+		</div>		
+	</template>
+	<template ngSwitchDefault>
+		<span>Oops! This control type is unknown. Contact the creator</span>
+	</template>	
+</span>

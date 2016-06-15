@@ -1,0 +1,77 @@
+<div class="portlet box green">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-gift"></i>Form Sample </div>
+        <div class="tools">
+            <a  class="collapse"> </a>
+            <a  data-toggle="modal" class="config"> </a>
+            <a  class="reload"> </a>
+            <a  class="remove"> </a>
+        </div>
+    </div>
+    <div class="portlet-body form">
+        <!-- BEGIN FORM-->
+        <form class="form-horizontal" #form = "ngForm" [ngFormModel]="myForm" (ngSubmit) = "submit()" >                      
+            <div class="form-body">
+                <h3 class="form-section">Company Info</h3>
+                <div class="row">
+                    <div class="col-md-12">
+                        <my-input [isSubmitted]="isSubmitted" [options]="components[0]"></my-input>
+                    </div>
+                </div>                
+                <div class="row">
+                    <div class="col-md-12">
+                        <my-input [isSubmitted]="isSubmitted" [options]="components[6]"></my-input>
+                    </div>
+                </div> 
+                <div class="row">
+                    <div class="col-md-12">
+                        <my-input [isSubmitted]="isSubmitted" [options]="components[7]"></my-input>
+                    </div>
+                </div> 
+                <div class="row">
+                    <div class="col-md-12">
+                        <my-input [isSubmitted]="isSubmitted" [options]="components[8]"></my-input>
+                    </div>
+                </div> 
+                <div class="row">
+                    <div class="col-md-12">
+                        <my-input [isSubmitted]="isSubmitted" [options]="components[9]"></my-input>
+                    </div>
+                </div>
+                <h3 class="form-section">Address</h3>
+                <address [address]="addressObject" (addressControlGroup)="addressControlGroup($event)"></address>                 
+            </div>
+            <div class="form-actions">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-offset-3 col-md-9">
+                                <button type="submit" class="btn green" (click)="save()">Submit</button>
+                                <button type="button" class="btn default" (click)="save()">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6"> </div>
+                </div>
+            </div>
+        </form>
+        <!-- END FORM-->
+    </div>
+</div>
+<tabset>
+    <tab title="Clinics" >        
+        <clinic-list [clinics]='company.clinics' (rowClicked)='newOrEditClinicDetail($event)' ></clinic-list>
+    </tab>
+    <tab title="Doctors">
+        <doctor-list [doctors]='company.doctors' (rowClicked)='newOrEditDoctorDetail($event)' ></doctor-list>
+    </tab>
+</tabset>
+                                        
+
+
+
+<!-- END SAMPLE TABLE PORTLET-->
+
+
+

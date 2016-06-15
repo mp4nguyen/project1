@@ -1,0 +1,22 @@
+
+<div [ngClass]="{'has-error':isSubmitted && !companyName.valid}" >                                              
+    <label class="col-md-4 control-label">Company Name:
+        <span class="required"> * </span>
+    </label>
+    <div class="col-md-6">
+        <input type="text" class="form-control" placeholder="Company name" required [ngFormControl]='nameControl' #companyName = "ngForm" ngControll="companyName">
+        <div [hidden]="!(isSubmitted && !companyName.valid)" class="alert alert-danger">Company name is required.</div>
+    </div>
+    {{isSubmitted}}
+</div>
+<!--
+<div [ngClass]="{'has-error':isSubmitted && !companyName.valid}" >                        
+    <label class="col-md-4 control-label">Company Name:
+        <span class="required"> * </span>
+    </label>
+    <div class="col-md-6">
+        <input type="text" class="form-control" placeholder="Company name" required ngControl="companyName" #companyName = "ngForm" [(ngModel)] = "company.companyName">
+        <div [hidden]="!(isSubmitted && !companyName.valid)" class="alert alert-danger">Company name is required.</div>
+    </div>
+</div>
+-->

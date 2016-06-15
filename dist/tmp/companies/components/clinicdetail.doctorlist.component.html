@@ -1,0 +1,17 @@
+<div class="portlet box green portlet-datatable ng-scope">
+    <div class="portlet-title">
+        <div class="caption bold uppercase">
+            <h4>Doctor List</h4>
+            <span class="caption-subject ng-binding"></span>
+            <!-- <span class="caption-helper font-yellow-lemon"></span> -->
+        </div>
+        <div class="actions">
+            <a class="btn red-thunderbird btn-sm" (click)='fireRowClicked()'>
+                New Doctor
+            </a>
+        </div>
+    </div>
+    <div class="portlet-body">				
+        <my-table [columns]="columns" [data]='people' (rowClickedEvent)='fireRowClicked($event)' ></my-table>
+    </div>
+</div>

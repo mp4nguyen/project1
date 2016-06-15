@@ -1,0 +1,65 @@
+<div class="portlet box green">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-gift"></i>Form Sample </div>
+        <div class="tools">
+            <a  class="collapse"> </a>
+            <a  data-toggle="modal" class="config"> </a>
+            <a  class="reload"> </a>
+            <a  class="remove"> </a>
+        </div>
+    </div>
+    <div class="portlet-body form">
+        <!-- BEGIN FORM-->
+        <form class="form-horizontal" #form = "ngForm" [ngFormModel]="myForm">
+            <div class="form-body">
+                <h3 class="form-section">Clinic Info</h3>
+                <div class="row">
+                    <div class="col-md-12">
+                        <my-input [isSubmitted]="isSubmitted" [options]="components[0]"></my-input>
+                    </div>
+                </div>                
+                <div class="row">
+                    <div class="col-md-3">
+                        <my-input [isSubmitted]="isSubmitted" [options]="components[1]"></my-input>
+                    </div>
+                    <div class="col-md-3">
+                        <my-input [isSubmitted]="isSubmitted" [options]="components[2]"></my-input>
+                    </div>
+                    <div class="col-md-3">
+                        <my-input [isSubmitted]="isSubmitted" [options]="components[3]"></my-input>
+                    </div>                                        
+                    <div class="col-md-3">
+                        <my-input [isSubmitted]="isSubmitted" [options]="components[4]"></my-input>
+                    </div>                    
+                </div> 
+                <h3 class="form-section">Address</h3>
+                <address [address]="addressObject" (addressControlGroup)="addressControlGroup($event)"></address>                 
+                <tabset>
+                    <tab title="Doctors" >        
+                        <doctor-list [doctors]="clinic.doctors" (rowClicked)="fireClinicRowClicked($event)"></doctor-list>
+                        <select-doctor #doctorDialog></select-doctor>
+                    </tab>
+                    <tab title="Booking Types">
+                        <bookingtype-list [bookingTypes]="clinic.bookingTypes" (rowClicked)="fireBTRowClicked($event)"></bookingtype-list>
+                        <select-booking-type #btDialog></select-booking-type>
+                    </tab>
+                </tabset>                
+            </div>
+            <div class="form-actions">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-offset-3 col-md-9">
+                                <button type="button" class="btn green" (click)="submit()">Submit</button>
+                                <button type="button" class="btn default" (click)="submit()">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6"> </div>
+                </div>
+            </div>
+        </form>
+        <!-- END FORM-->
+    </div>
+</div>

@@ -1,0 +1,58 @@
+<p-growl [value]="msgs" ></p-growl>
+<div class="portlet box green">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-gift"></i>Form Sample </div>
+        <div class="tools">
+            <a  class="collapse"> </a>
+            <a  data-toggle="modal" class="config"> </a>
+            <a  class="reload"> </a>
+            <a  class="remove"> </a>
+        </div>
+    </div>
+    <div class="portlet-body form">
+        <!-- BEGIN FORM-->
+        <form action="#" class="form-horizontal">
+            <div class="form-body">
+                <people [person] = "doctor.person" (personControlGroup)="personControlGroup($event)" ></people>
+                <h3 class="form-section">Setting</h3>
+                <div class="row">
+                    <div class="col-md-4">
+                        <my-input [isSubmitted]="isSubmitted" [options]="components[0]"></my-input>
+                    </div>
+                    <div class="col-md-4">
+                        <my-input [isSubmitted]="isSubmitted" [options]="components[1]"></my-input>
+                    </div>
+                    <div class="col-md-4">
+                        <my-input [isSubmitted]="isSubmitted" [options]="components[2]"></my-input>
+                    </div>
+                </div> 
+                <tabset>
+                    <tab title="Clinics" >        
+                        <clinic-list [clinics]="doctor.clinics" (rowClicked)="fireClinicRowClicked($event)"></clinic-list>
+                        <select-clinic #clinicDialog></select-clinic>
+                    </tab>
+                    <tab title="Booking Types">
+                        <bookingtype-list [bookingTypes]="doctor.bookingTypes" (rowClicked)="fireBTRowClicked($event)"></bookingtype-list>
+                        <select-booking-type #btDialog></select-booking-type>
+                    </tab>
+                </tabset>   
+                <doctor-schedule [events]="doctor.rosters" [workingSites]="doctor.clinics" [bookingTypes]="doctor.bookingTypes" (addedEvent)="addedRosterEvent($event)"></doctor-schedule>                                     
+            </div>
+            <div class="form-actions">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-offset-3 col-md-9">
+                                <button type="submit" class="btn green" (click)="save()">Submit</button>{{isSave}}
+                                <button type="button" class="btn default" (click)="save()">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6"> </div>
+                </div>
+            </div>
+        </form>
+        <!-- END FORM-->
+    </div>
+</div>

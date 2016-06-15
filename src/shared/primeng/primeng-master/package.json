@@ -1,0 +1,24 @@
+{
+  "name": "primeng",
+  "version": "v1.0.0-beta.7-SNAPSHOT",
+  "scripts": {
+    "tsc": "tsc",
+    "tsc:w": "tsc -w",
+    "lite": "lite-server",
+    "start": "tsc && concurrently \"npm run tsc:w\" \"npm run lite\" "
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/primefaces/primeng.git"
+  },
+  "license": "Apache-2.0",
+  "peerDependencies": {
+    "primeui": "^4.1.11"
+  },
+  "devDependencies": {
+    "concurrently": "^2.0.0",
+    "lite-server": "^2.2.0",
+    "typescript": "^1.8.10",
+    "typings": "^0.8.1"
+  }
+}
