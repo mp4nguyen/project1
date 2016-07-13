@@ -122,7 +122,7 @@ export abstract class BaseLoopBackApi {
   protected path: string;
 
   constructor(
-    @Inject(Http) protected http: Http, 
+    @Inject(Http) protected http: Http,
     @Optional() @Inject(ErrorHandler) protected errorHandler: ErrorHandler
   ) {
     if (!errorHandler) {
@@ -151,7 +151,7 @@ export abstract class BaseLoopBackApi {
    * @param any     params    Parameters for building url (filter and other)
    * @param any     data      Request body
    */
-  public request(method: string, url: string, urlParams: any = {}, 
+  public request(method: string, url: string, urlParams: any = {},
                  params: any = {}, data: any = null) {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
@@ -298,7 +298,7 @@ export class UserApi extends BaseLoopBackApi {
    *
    * @param any id User id
    *
-   * @param object filter 
+   * @param object filter
    *
    * @returns object[] An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -396,7 +396,7 @@ export class UserApi extends BaseLoopBackApi {
    *
    * Data properties:
    *
-   *  - `count` – `{number}` - 
+   *  - `count` – `{number}` -
    */
   public __count__accessTokens(id: any, where: any = undefined) {
     let method: string = "GET";
@@ -510,7 +510,7 @@ export class UserApi extends BaseLoopBackApi {
    *
    * Data properties:
    *
-   *  - `exists` – `{boolean}` - 
+   *  - `exists` – `{boolean}` -
    */
   public exists(id: any) {
     let method: string = "GET";
@@ -689,7 +689,7 @@ export class UserApi extends BaseLoopBackApi {
    *
    * Data properties:
    *
-   *  - `count` – `{number}` - 
+   *  - `count` – `{number}` -
    */
   public count(where: any = undefined) {
     let method: string = "GET";
@@ -744,7 +744,7 @@ export class UserApi extends BaseLoopBackApi {
    *
    * @param object data Request data.
    *
-   *  - `options` – `{object}` - 
+   *  - `options` – `{object}` -
    *
    * @returns object An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -752,7 +752,7 @@ export class UserApi extends BaseLoopBackApi {
    *
    * Data properties:
    *
-   *  - `changes` – `{ReadableStream}` - 
+   *  - `changes` – `{ReadableStream}` -
    */
   public createChangeStream(options: any = undefined) {
     let method: string = "POST";
@@ -787,9 +787,9 @@ export class UserApi extends BaseLoopBackApi {
    *
    * The response body contains properties of the AccessToken created on login.
    * Depending on the value of `include` parameter, the body may contain additional properties:
-   * 
+   *
    *   - `user` - `{User}` - Data of the currently logged in user. (`include=user`)
-   * 
+   *
    *
    */
   public login(credentials: any, include: any = "user") {
@@ -854,11 +854,11 @@ export class UserApi extends BaseLoopBackApi {
   /**
    * Confirm a user registration with email verification token.
    *
-   * @param string uid 
+   * @param string uid
    *
-   * @param string token 
+   * @param string token
    *
-   * @param string redirect 
+   * @param string redirect
    *
    * @returns object An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -979,6 +979,802 @@ export class UserApi extends BaseLoopBackApi {
    */
   public getModelName() {
     return "User";
+  }
+}
+
+/**
+ * Api for the `CUsers` model.
+ */
+@Injectable()
+export class CUsersApi extends BaseLoopBackApi {
+
+  constructor(
+    @Inject(Http) http: Http,
+    @Optional() @Inject(ErrorHandler) errorHandler: ErrorHandler
+  ) {
+    super(http, errorHandler);
+  }
+
+  /**
+   * Find a related item by id for accessTokens.
+   *
+   * @param any id Users id
+   *
+   * @param any fk Foreign key for accessTokens
+   *
+   * @returns object An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * <em>
+   * (The remote method definition does not provide any description.
+   * This usually means the response is a `CUsers` object.)
+   * </em>
+   */
+  public __findById__accessTokens(id: any, fk: any) {
+    let method: string = "GET";
+
+    let url: string = this.getPath() + "/CUsers/:id/accessTokens/:fk";
+    let urlParams: any = {
+      id: id,
+      fk: fk
+    };
+
+    let params: any = {};
+
+    let result = this.request(method, url, urlParams, params);
+    return result;
+  }
+
+  /**
+   * Delete a related item by id for accessTokens.
+   *
+   * @param any id Users id
+   *
+   * @param any fk Foreign key for accessTokens
+   *
+   * @returns object An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * This method returns no data.
+   */
+  public __destroyById__accessTokens(id: any, fk: any) {
+    let method: string = "DELETE";
+
+    let url: string = this.getPath() + "/CUsers/:id/accessTokens/:fk";
+    let urlParams: any = {
+      id: id,
+      fk: fk
+    };
+
+    let params: any = {};
+
+    let result = this.request(method, url, urlParams, params);
+    return result;
+  }
+
+  /**
+   * Update a related item by id for accessTokens.
+   *
+   * @param any id Users id
+   *
+   * @param any fk Foreign key for accessTokens
+   *
+   * @param object data Request data.
+   *
+   * This method expects a subset of model properties as request parameters.
+   *
+   * @returns object An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * <em>
+   * (The remote method definition does not provide any description.
+   * This usually means the response is a `CUsers` object.)
+   * </em>
+   */
+  public __updateById__accessTokens(id: any, fk: any, data: any = undefined) {
+    let method: string = "PUT";
+
+    let url: string = this.getPath() + "/CUsers/:id/accessTokens/:fk";
+    let urlParams: any = {
+      id: id,
+      fk: fk
+    };
+
+    let params: any = {};
+
+    let result = this.request(method, url, urlParams, params, data);
+    return result;
+  }
+
+  /**
+   * Queries accessTokens of CUsers.
+   *
+   * @param any id Users id
+   *
+   * @param object filter
+   *
+   * @returns object[] An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * <em>
+   * (The remote method definition does not provide any description.
+   * This usually means the response is a `CUsers` object.)
+   * </em>
+   */
+  public __get__accessTokens(id: any, filter: LoopBackFilterInterface = undefined) {
+    let method: string = "GET";
+
+    let url: string = this.getPath() + "/CUsers/:id/accessTokens";
+    let urlParams: any = {
+      id: id
+    };
+
+    let params: any = {};
+    if (filter !== undefined) {
+      params.filter = filter;
+    }
+
+    let result = this.request(method, url, urlParams, params);
+    return result;
+  }
+
+  /**
+   * Creates a new instance in accessTokens of this model.
+   *
+   * @param any id Users id
+   *
+   * @param object data Request data.
+   *
+   * This method expects a subset of model properties as request parameters.
+   *
+   * @returns object An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * <em>
+   * (The remote method definition does not provide any description.
+   * This usually means the response is a `CUsers` object.)
+   * </em>
+   */
+  public __create__accessTokens(id: any, data: any = undefined) {
+    let method: string = "POST";
+
+    let url: string = this.getPath() + "/CUsers/:id/accessTokens";
+    let urlParams: any = {
+      id: id
+    };
+
+    let params: any = {};
+
+    let result = this.request(method, url, urlParams, params, data);
+    return result;
+  }
+
+  /**
+   * Deletes all accessTokens of this model.
+   *
+   * @param any id Users id
+   *
+   * @returns object An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * This method returns no data.
+   */
+  public __delete__accessTokens(id: any) {
+    let method: string = "DELETE";
+
+    let url: string = this.getPath() + "/CUsers/:id/accessTokens";
+    let urlParams: any = {
+      id: id
+    };
+
+    let params: any = {};
+
+    let result = this.request(method, url, urlParams, params);
+    return result;
+  }
+
+  /**
+   * Counts accessTokens of CUsers.
+   *
+   * @param any id Users id
+   *
+   * @param object where Criteria to match model instances
+   *
+   * @returns object An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * Data properties:
+   *
+   *  - `count` – `{number}` -
+   */
+  public __count__accessTokens(id: any, where: any = undefined) {
+    let method: string = "GET";
+
+    let url: string = this.getPath() + "/CUsers/:id/accessTokens/count";
+    let urlParams: any = {
+      id: id
+    };
+
+    let params: any = {};
+
+    let result = this.request(method, url, urlParams, params);
+    return result;
+  }
+
+  /**
+   * Create a new instance of the model and persist it into the data source.
+   *
+   * @param object data Request data.
+   *
+   * This method expects a subset of model properties as request parameters.
+   *
+   * @returns object An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * <em>
+   * (The remote method definition does not provide any description.
+   * This usually means the response is a `CUsers` object.)
+   * </em>
+   */
+  public create(data: any = undefined) {
+    let method: string = "POST";
+
+    let url: string = this.getPath() + "/CUsers";
+    let urlParams: any = {
+    };
+
+    let params: any = {};
+
+    let result = this.request(method, url, urlParams, params, data);
+    return result;
+  }
+
+  /**
+   * Create a new instance of the model and persist it into the data source.
+   *
+   * @param object data Request data.
+   *
+   * This method expects a subset of model properties as request parameters.
+   *
+   * @returns object[] An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * <em>
+   * (The remote method definition does not provide any description.
+   * This usually means the response is a `CUsers` object.)
+   * </em>
+   */
+  public createMany(data: any = undefined) {
+    let method: string = "POST";
+
+    let url: string = this.getPath() + "/CUsers";
+    let urlParams: any = {
+    };
+
+    let params: any = {};
+
+    let result = this.request(method, url, urlParams, params, data);
+    return result;
+  }
+
+  /**
+   * Update an existing model instance or insert a new one into the data source.
+   *
+   * @param object data Request data.
+   *
+   * This method expects a subset of model properties as request parameters.
+   *
+   * @returns object An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * <em>
+   * (The remote method definition does not provide any description.
+   * This usually means the response is a `CUsers` object.)
+   * </em>
+   */
+  public upsert(data: any = undefined) {
+    let method: string = "PUT";
+
+    let url: string = this.getPath() + "/CUsers";
+    let urlParams: any = {
+    };
+
+    let params: any = {};
+
+    let result = this.request(method, url, urlParams, params, data);
+    return result;
+  }
+
+  /**
+   * Check whether a model instance exists in the data source.
+   *
+   * @param any id Model id
+   *
+   * @returns object An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * Data properties:
+   *
+   *  - `exists` – `{boolean}` -
+   */
+  public exists(id: any) {
+    let method: string = "GET";
+
+    let url: string = this.getPath() + "/CUsers/:id/exists";
+    let urlParams: any = {
+      id: id
+    };
+
+    let params: any = {};
+
+    let result = this.request(method, url, urlParams, params);
+    return result;
+  }
+
+  /**
+   * Find a model instance by id from the data source.
+   *
+   * @param any id Model id
+   *
+   * @param object filter Filter defining fields and include
+   *
+   * @returns object An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * <em>
+   * (The remote method definition does not provide any description.
+   * This usually means the response is a `CUsers` object.)
+   * </em>
+   */
+  public findById(id: any, filter: LoopBackFilterInterface = undefined) {
+    let method: string = "GET";
+
+    let url: string = this.getPath() + "/CUsers/:id";
+    let urlParams: any = {
+      id: id
+    };
+
+    let params: any = {};
+    if (filter !== undefined) {
+      params.filter = filter;
+    }
+
+    let result = this.request(method, url, urlParams, params);
+    return result;
+  }
+
+  /**
+   * Find all instances of the model matched by filter from the data source.
+   *
+   * @param object filter Filter defining fields, where, include, order, offset, and limit
+   *
+   * @returns object[] An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * <em>
+   * (The remote method definition does not provide any description.
+   * This usually means the response is a `CUsers` object.)
+   * </em>
+   */
+  public find(filter: LoopBackFilterInterface = undefined) {
+    let method: string = "GET";
+
+    let url: string = this.getPath() + "/CUsers";
+    let urlParams: any = {
+    };
+
+    let params: any = {};
+    if (filter !== undefined) {
+      params.filter = filter;
+    }
+
+    let result = this.request(method, url, urlParams, params);
+    return result;
+  }
+
+  /**
+   * Find first instance of the model matched by filter from the data source.
+   *
+   * @param object filter Filter defining fields, where, include, order, offset, and limit
+   *
+   * @returns object An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * <em>
+   * (The remote method definition does not provide any description.
+   * This usually means the response is a `CUsers` object.)
+   * </em>
+   */
+  public findOne(filter: LoopBackFilterInterface = undefined) {
+    let method: string = "GET";
+
+    let url: string = this.getPath() + "/CUsers/findOne";
+    let urlParams: any = {
+    };
+
+    let params: any = {};
+    if (filter !== undefined) {
+      params.filter = filter;
+    }
+
+    let result = this.request(method, url, urlParams, params);
+    return result;
+  }
+
+  /**
+   * Update instances of the model matched by where from the data source.
+   *
+   * @param object where Criteria to match model instances
+   *
+   * @param object data Request data.
+   *
+   * This method expects a subset of model properties as request parameters.
+   *
+   * @returns object An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * The number of instances updated
+   */
+  public updateAll(where: any = undefined, data: any = undefined) {
+    let method: string = "POST";
+
+    let url: string = this.getPath() + "/CUsers/update";
+    let urlParams: any = {
+    };
+
+    let params: any = {};
+    if (where !== undefined) {
+      params.where = where;
+    }
+
+    let result = this.request(method, url, urlParams, params, data);
+    return result;
+  }
+
+  /**
+   * Delete a model instance by id from the data source.
+   *
+   * @param any id Model id
+   *
+   * @returns object An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * <em>
+   * (The remote method definition does not provide any description.
+   * This usually means the response is a `CUsers` object.)
+   * </em>
+   */
+  public deleteById(id: any) {
+    let method: string = "DELETE";
+
+    let url: string = this.getPath() + "/CUsers/:id";
+    let urlParams: any = {
+      id: id
+    };
+
+    let params: any = {};
+
+    let result = this.request(method, url, urlParams, params);
+    return result;
+  }
+
+  /**
+   * Count instances of the model matched by where from the data source.
+   *
+   * @param object where Criteria to match model instances
+   *
+   * @returns object An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * Data properties:
+   *
+   *  - `count` – `{number}` -
+   */
+  public count(where: any = undefined) {
+    let method: string = "GET";
+
+    let url: string = this.getPath() + "/CUsers/count";
+    let urlParams: any = {
+    };
+
+    let params: any = {};
+    if (where !== undefined) {
+      params.where = where;
+    }
+
+    let result = this.request(method, url, urlParams, params);
+    return result;
+  }
+
+  /**
+   * Update attributes for a model instance and persist it into the data source.
+   *
+   * @param any id Users id
+   *
+   * @param object data Request data.
+   *
+   * This method expects a subset of model properties as request parameters.
+   *
+   * @returns object An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * <em>
+   * (The remote method definition does not provide any description.
+   * This usually means the response is a `CUsers` object.)
+   * </em>
+   */
+  public updateAttributes(id: any, data: any = undefined) {
+    let method: string = "PUT";
+
+    let url: string = this.getPath() + "/CUsers/:id";
+    let urlParams: any = {
+      id: id
+    };
+
+    let params: any = {};
+
+    let result = this.request(method, url, urlParams, params, data);
+    return result;
+  }
+
+  /**
+   * Create a change stream.
+   *
+   * @param object data Request data.
+   *
+   *  - `options` – `{object}` -
+   *
+   * @returns object An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * Data properties:
+   *
+   *  - `changes` – `{ReadableStream}` -
+   */
+  public createChangeStream(options: any = undefined) {
+    let method: string = "POST";
+
+    let url: string = this.getPath() + "/CUsers/change-stream";
+    let urlParams: any = {
+    };
+
+    let params: any = {};
+
+    let result = this.request(method, url, urlParams, params, options);
+    return result;
+  }
+
+  /**
+   * Login a user with username/email and password.
+   *
+   * @param string include Related objects to include in the response. See the description of return value for more details.
+   *   Default value: `user`.
+   *
+   *  - `rememberMe` - `boolean` - Whether the authentication credentials
+   *     should be remembered in localStorage across app/browser restarts.
+   *     Default: `true`.
+   *
+   * @param object data Request data.
+   *
+   * This method expects a subset of model properties as request parameters.
+   *
+   * @returns object An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * The response body contains properties of the AccessToken created on login.
+   * Depending on the value of `include` parameter, the body may contain additional properties:
+   *
+   *   - `user` - `{User}` - Data of the currently logged in user. (`include=user`)
+   *
+   *
+   */
+  public login(credentials: any, include: any = "user") {
+    let method: string = "POST";
+
+    let url: string = this.getPath() + "/CUsers/login";
+    let urlParams: any = {
+    };
+
+    let params: any = {};
+    if (include !== undefined) {
+      params.include = include;
+    }
+
+    let result = this.request(method, url, urlParams, params, credentials)
+      .share();
+      result.subscribe(
+        response => {
+          auth.setUser(response.id, response.userId, response.user);
+          auth.setRememberMe(true);
+          auth.save();
+        },
+        () => null
+      );
+    return result;
+  }
+
+  /**
+   * Logout a user with access token.
+   *
+   * @param object data Request data.
+   *
+   *  - `access_token` – `{string}` - Do not supply this argument, it is automatically extracted from request headers.
+   *
+   * @returns object An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * This method returns no data.
+   */
+  public logout() {
+    let method: string = "POST";
+
+    let url: string = this.getPath() + "/CUsers/logout";
+    let urlParams: any = {
+    };
+
+    let params: any = {};
+
+    let result = this.request(method, url, urlParams, params)
+      .share();
+      result.subscribe(
+        () => {
+          auth.clearUser();
+          auth.clearStorage();
+        },
+        () => null
+      );
+    return result;
+  }
+
+  /**
+   * Confirm a user registration with email verification token.
+   *
+   * @param string uid
+   *
+   * @param string token
+   *
+   * @param string redirect
+   *
+   * @returns object An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * This method returns no data.
+   */
+  public confirm(uid: string, token: string, redirect: string = undefined) {
+    let method: string = "GET";
+
+    let url: string = this.getPath() + "/CUsers/confirm";
+    let urlParams: any = {
+    };
+
+    let params: any = {};
+
+    let result = this.request(method, url, urlParams, params);
+    return result;
+  }
+
+  /**
+   * Reset password for a user with email.
+   *
+   * @param object data Request data.
+   *
+   * This method expects a subset of model properties as request parameters.
+   *
+   * @returns object An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * This method returns no data.
+   */
+  public resetPassword(options: any) {
+    let method: string = "POST";
+
+    let url: string = this.getPath() + "/CUsers/reset";
+    let urlParams: any = {
+    };
+
+    let params: any = {};
+
+    let result = this.request(method, url, urlParams, params, options);
+    return result;
+  }
+
+  /**
+   * @ngdoc method
+   * @name lbServices.CUsers#getCurrent
+   * @methodOf lbServices.CUsers
+   *
+   * @description
+   *
+   * Get data of the currently logged user. Fail with HTTP result 401
+   * when there is no user logged in.
+   *
+   * @returns object An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   */
+  public getCurrent(): any {
+    let method: string = "GET";
+
+    let url: string = this.getPath() + "/CUsers" + "/:id";
+    let id: any = auth.getCurrentUserId();
+    if (id == null) {
+      id = '__anonymous__';
+    }
+    let urlParams: any = {
+      id: id
+    };
+
+    let result = this.request(method, url, urlParams)
+      .share();
+      result.subscribe(
+        response => {
+          auth.setCurrentUserData(response);
+        },
+        () => null
+      );
+    return result;
+  }
+
+  /**
+   * Get data of the currently logged user that was returned by the last
+   * call to {@link lbServices.CUsers#login} or
+   * {@link lbServices.CUsers#getCurrent}. Return null when there
+   * is no user logged in or the data of the current user were not fetched
+   * yet.
+   *
+   * @returns object A CUsers instance.
+   */
+  public getCachedCurrent() {
+    return auth.getCurrentUserData();
+  }
+
+  /**
+   * @name lbServices.CUsers#isAuthenticated
+   *
+   * @returns {boolean} True if the current user is authenticated (logged in).
+   */
+  public isAuthenticated() {
+    return this.getCurrentId() != null;
+  }
+
+  /**
+   * @name lbServices.CUsers#getCurrentId
+   *
+   * @returns object Id of the currently logged-in user or null.
+   */
+  public getCurrentId() {
+    return auth.getCurrentUserId();
+  }
+
+  /**
+   * The name of the model represented by this $resource,
+   * i.e. `CUsers`.
+   */
+  public getModelName() {
+    return "CUsers";
   }
 }
 
@@ -1282,7 +2078,7 @@ export class CBookingTypesApi extends BaseLoopBackApi {
    *
    * @param any id BookingTypes id
    *
-   * @param object filter 
+   * @param object filter
    *
    * @returns object[] An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -1380,7 +2176,7 @@ export class CBookingTypesApi extends BaseLoopBackApi {
    *
    * Data properties:
    *
-   *  - `count` – `{number}` - 
+   *  - `count` – `{number}` -
    */
   public __count__CClinicBookingTypes(id: any, where: any = undefined) {
     let method: string = "GET";
@@ -1401,7 +2197,7 @@ export class CBookingTypesApi extends BaseLoopBackApi {
    *
    * @param any id BookingTypes id
    *
-   * @param object filter 
+   * @param object filter
    *
    * @returns object[] An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -1499,7 +2295,7 @@ export class CBookingTypesApi extends BaseLoopBackApi {
    *
    * Data properties:
    *
-   *  - `count` – `{number}` - 
+   *  - `count` – `{number}` -
    */
   public __count__Clinics(id: any, where: any = undefined) {
     let method: string = "GET";
@@ -1613,7 +2409,7 @@ export class CBookingTypesApi extends BaseLoopBackApi {
    *
    * Data properties:
    *
-   *  - `exists` – `{boolean}` - 
+   *  - `exists` – `{boolean}` -
    */
   public exists(id: any) {
     let method: string = "GET";
@@ -1792,7 +2588,7 @@ export class CBookingTypesApi extends BaseLoopBackApi {
    *
    * Data properties:
    *
-   *  - `count` – `{number}` - 
+   *  - `count` – `{number}` -
    */
   public count(where: any = undefined) {
     let method: string = "GET";
@@ -1847,7 +2643,7 @@ export class CBookingTypesApi extends BaseLoopBackApi {
    *
    * @param object data Request data.
    *
-   *  - `options` – `{object}` - 
+   *  - `options` – `{object}` -
    *
    * @returns object An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -1855,7 +2651,7 @@ export class CBookingTypesApi extends BaseLoopBackApi {
    *
    * Data properties:
    *
-   *  - `changes` – `{ReadableStream}` - 
+   *  - `changes` – `{ReadableStream}` -
    */
   public createChangeStream(options: any = undefined) {
     let method: string = "POST";
@@ -1875,7 +2671,7 @@ export class CBookingTypesApi extends BaseLoopBackApi {
    *
    * @param any id ClinicBookingTypes id
    *
-   * @param boolean refresh 
+   * @param boolean refresh
    *
    * @returns object An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -1908,7 +2704,7 @@ export class CBookingTypesApi extends BaseLoopBackApi {
    *
    * @param any id DoctorBookingTypes id
    *
-   * @param boolean refresh 
+   * @param boolean refresh
    *
    * @returns object An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -1923,6 +2719,39 @@ export class CBookingTypesApi extends BaseLoopBackApi {
     let method: string = "GET";
 
     let url: string = this.getPath() + "/CDoctorBookingTypes/:id/BookingTypes";
+    let urlParams: any = {
+      id: id
+    };
+
+    let params: any = {};
+    if (refresh !== undefined) {
+      params.refresh = refresh;
+    }
+
+    let result = this.request(method, url, urlParams, params);
+    return result;
+  }
+
+  /**
+   * Fetches belongsTo relation BookingType.
+   *
+   * @param any id Rosters id
+   *
+   * @param boolean refresh
+   *
+   * @returns object An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * <em>
+   * (The remote method definition does not provide any description.
+   * This usually means the response is a `CBookingTypes` object.)
+   * </em>
+   */
+  public __get__CRosters__BookingType(id: any, refresh: boolean = undefined) {
+    let method: string = "GET";
+
+    let url: string = this.getPath() + "/CRosters/:id/BookingType";
     let urlParams: any = {
       id: id
     };
@@ -1964,7 +2793,7 @@ export class CClinicBookingTypesApi extends BaseLoopBackApi {
    *
    * @param any id ClinicBookingTypes id
    *
-   * @param boolean refresh 
+   * @param boolean refresh
    *
    * @returns object An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -1997,7 +2826,7 @@ export class CClinicBookingTypesApi extends BaseLoopBackApi {
    *
    * @param any id ClinicBookingTypes id
    *
-   * @param boolean refresh 
+   * @param boolean refresh
    *
    * @returns object An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -2123,7 +2952,7 @@ export class CClinicBookingTypesApi extends BaseLoopBackApi {
    *
    * Data properties:
    *
-   *  - `exists` – `{boolean}` - 
+   *  - `exists` – `{boolean}` -
    */
   public exists(id: any) {
     let method: string = "GET";
@@ -2302,7 +3131,7 @@ export class CClinicBookingTypesApi extends BaseLoopBackApi {
    *
    * Data properties:
    *
-   *  - `count` – `{number}` - 
+   *  - `count` – `{number}` -
    */
   public count(where: any = undefined) {
     let method: string = "GET";
@@ -2357,7 +3186,7 @@ export class CClinicBookingTypesApi extends BaseLoopBackApi {
    *
    * @param object data Request data.
    *
-   *  - `options` – `{object}` - 
+   *  - `options` – `{object}` -
    *
    * @returns object An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -2365,7 +3194,7 @@ export class CClinicBookingTypesApi extends BaseLoopBackApi {
    *
    * Data properties:
    *
-   *  - `changes` – `{ReadableStream}` - 
+   *  - `changes` – `{ReadableStream}` -
    */
   public createChangeStream(options: any = undefined) {
     let method: string = "POST";
@@ -2479,7 +3308,7 @@ export class CClinicBookingTypesApi extends BaseLoopBackApi {
    *
    * @param any id BookingTypes id
    *
-   * @param object filter 
+   * @param object filter
    *
    * @returns object[] An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -2609,7 +3438,7 @@ export class CClinicBookingTypesApi extends BaseLoopBackApi {
    *
    * Data properties:
    *
-   *  - `count` – `{number}` - 
+   *  - `count` – `{number}` -
    */
   public __count__CBookingTypes__CClinicBookingTypes(id: any, where: any = undefined) {
     let method: string = "GET";
@@ -2653,7 +3482,7 @@ export class CDoctorBookingTypesApi extends BaseLoopBackApi {
    *
    * @param any id DoctorBookingTypes id
    *
-   * @param boolean refresh 
+   * @param boolean refresh
    *
    * @returns object An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -2686,7 +3515,7 @@ export class CDoctorBookingTypesApi extends BaseLoopBackApi {
    *
    * @param any id DoctorBookingTypes id
    *
-   * @param boolean refresh 
+   * @param boolean refresh
    *
    * @returns object An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -2812,7 +3641,7 @@ export class CDoctorBookingTypesApi extends BaseLoopBackApi {
    *
    * Data properties:
    *
-   *  - `exists` – `{boolean}` - 
+   *  - `exists` – `{boolean}` -
    */
   public exists(id: any) {
     let method: string = "GET";
@@ -2991,7 +3820,7 @@ export class CDoctorBookingTypesApi extends BaseLoopBackApi {
    *
    * Data properties:
    *
-   *  - `count` – `{number}` - 
+   *  - `count` – `{number}` -
    */
   public count(where: any = undefined) {
     let method: string = "GET";
@@ -3046,7 +3875,7 @@ export class CDoctorBookingTypesApi extends BaseLoopBackApi {
    *
    * @param object data Request data.
    *
-   *  - `options` – `{object}` - 
+   *  - `options` – `{object}` -
    *
    * @returns object An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -3054,7 +3883,7 @@ export class CDoctorBookingTypesApi extends BaseLoopBackApi {
    *
    * Data properties:
    *
-   *  - `changes` – `{ReadableStream}` - 
+   *  - `changes` – `{ReadableStream}` -
    */
   public createChangeStream(options: any = undefined) {
     let method: string = "POST";
@@ -3097,7 +3926,7 @@ export class CDoctorClinicsApi extends BaseLoopBackApi {
    *
    * @param any id DoctorClinics id
    *
-   * @param boolean refresh 
+   * @param boolean refresh
    *
    * @returns object An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -3130,7 +3959,7 @@ export class CDoctorClinicsApi extends BaseLoopBackApi {
    *
    * @param any id DoctorClinics id
    *
-   * @param boolean refresh 
+   * @param boolean refresh
    *
    * @returns object An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -3256,7 +4085,7 @@ export class CDoctorClinicsApi extends BaseLoopBackApi {
    *
    * Data properties:
    *
-   *  - `exists` – `{boolean}` - 
+   *  - `exists` – `{boolean}` -
    */
   public exists(id: any) {
     let method: string = "GET";
@@ -3435,7 +4264,7 @@ export class CDoctorClinicsApi extends BaseLoopBackApi {
    *
    * Data properties:
    *
-   *  - `count` – `{number}` - 
+   *  - `count` – `{number}` -
    */
   public count(where: any = undefined) {
     let method: string = "GET";
@@ -3490,7 +4319,7 @@ export class CDoctorClinicsApi extends BaseLoopBackApi {
    *
    * @param object data Request data.
    *
-   *  - `options` – `{object}` - 
+   *  - `options` – `{object}` -
    *
    * @returns object An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -3498,7 +4327,7 @@ export class CDoctorClinicsApi extends BaseLoopBackApi {
    *
    * Data properties:
    *
-   *  - `changes` – `{ReadableStream}` - 
+   *  - `changes` – `{ReadableStream}` -
    */
   public createChangeStream(options: any = undefined) {
     let method: string = "POST";
@@ -3729,7 +4558,7 @@ export class CDoctorsApi extends BaseLoopBackApi {
    *
    * @param any id Doctors id
    *
-   * @param boolean refresh 
+   * @param boolean refresh
    *
    * @returns object An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -4138,7 +4967,7 @@ export class CDoctorsApi extends BaseLoopBackApi {
    *
    * @param any id Doctors id
    *
-   * @param object filter 
+   * @param object filter
    *
    * @returns object[] An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -4236,7 +5065,7 @@ export class CDoctorsApi extends BaseLoopBackApi {
    *
    * Data properties:
    *
-   *  - `count` – `{number}` - 
+   *  - `count` – `{number}` -
    */
   public __count__BookingTypes(id: any, where: any = undefined) {
     let method: string = "GET";
@@ -4257,7 +5086,7 @@ export class CDoctorsApi extends BaseLoopBackApi {
    *
    * @param any id Doctors id
    *
-   * @param object filter 
+   * @param object filter
    *
    * @returns object[] An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -4355,7 +5184,7 @@ export class CDoctorsApi extends BaseLoopBackApi {
    *
    * Data properties:
    *
-   *  - `count` – `{number}` - 
+   *  - `count` – `{number}` -
    */
   public __count__People(id: any, where: any = undefined) {
     let method: string = "GET";
@@ -4376,7 +5205,7 @@ export class CDoctorsApi extends BaseLoopBackApi {
    *
    * @param any id Doctors id
    *
-   * @param object filter 
+   * @param object filter
    *
    * @returns object[] An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -4474,7 +5303,7 @@ export class CDoctorsApi extends BaseLoopBackApi {
    *
    * Data properties:
    *
-   *  - `count` – `{number}` - 
+   *  - `count` – `{number}` -
    */
   public __count__Rosters(id: any, where: any = undefined) {
     let method: string = "GET";
@@ -4495,7 +5324,7 @@ export class CDoctorsApi extends BaseLoopBackApi {
    *
    * @param any id Doctors id
    *
-   * @param object filter 
+   * @param object filter
    *
    * @returns object[] An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -4593,7 +5422,7 @@ export class CDoctorsApi extends BaseLoopBackApi {
    *
    * Data properties:
    *
-   *  - `count` – `{number}` - 
+   *  - `count` – `{number}` -
    */
   public __count__Clinics(id: any, where: any = undefined) {
     let method: string = "GET";
@@ -4707,7 +5536,7 @@ export class CDoctorsApi extends BaseLoopBackApi {
    *
    * Data properties:
    *
-   *  - `exists` – `{boolean}` - 
+   *  - `exists` – `{boolean}` -
    */
   public exists(id: any) {
     let method: string = "GET";
@@ -4886,7 +5715,7 @@ export class CDoctorsApi extends BaseLoopBackApi {
    *
    * Data properties:
    *
-   *  - `count` – `{number}` - 
+   *  - `count` – `{number}` -
    */
   public count(where: any = undefined) {
     let method: string = "GET";
@@ -4941,7 +5770,7 @@ export class CDoctorsApi extends BaseLoopBackApi {
    *
    * @param object data Request data.
    *
-   *  - `options` – `{object}` - 
+   *  - `options` – `{object}` -
    *
    * @returns object An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -4949,7 +5778,7 @@ export class CDoctorsApi extends BaseLoopBackApi {
    *
    * Data properties:
    *
-   *  - `changes` – `{ReadableStream}` - 
+   *  - `changes` – `{ReadableStream}` -
    */
   public createChangeStream(options: any = undefined) {
     let method: string = "POST";
@@ -5383,7 +6212,7 @@ export class CDoctorsApi extends BaseLoopBackApi {
    *
    * @param any nk Foreign key for Clinics.
    *
-   * @param object filter 
+   * @param object filter
    *
    * @returns object[] An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -5490,7 +6319,7 @@ export class CDoctorsApi extends BaseLoopBackApi {
    *
    * Data properties:
    *
-   *  - `count` – `{number}` - 
+   *  - `count` – `{number}` -
    */
   public __count__Clinics__BookingTypes(id: any, nk: any, where: any = undefined) {
     let method: string = "GET";
@@ -5514,7 +6343,7 @@ export class CDoctorsApi extends BaseLoopBackApi {
    *
    * @param any nk Foreign key for Clinics.
    *
-   * @param object filter 
+   * @param object filter
    *
    * @returns object[] An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -5621,7 +6450,7 @@ export class CDoctorsApi extends BaseLoopBackApi {
    *
    * Data properties:
    *
-   *  - `count` – `{number}` - 
+   *  - `count` – `{number}` -
    */
   public __count__Clinics__Doctors(id: any, nk: any, where: any = undefined) {
     let method: string = "GET";
@@ -5954,7 +6783,7 @@ export class CDoctorsApi extends BaseLoopBackApi {
    *
    * @param any nk Foreign key for BookingTypes.
    *
-   * @param object filter 
+   * @param object filter
    *
    * @returns object[] An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -6061,7 +6890,7 @@ export class CDoctorsApi extends BaseLoopBackApi {
    *
    * Data properties:
    *
-   *  - `count` – `{number}` - 
+   *  - `count` – `{number}` -
    */
   public __count__BookingTypes__CClinicBookingTypes(id: any, nk: any, where: any = undefined) {
     let method: string = "GET";
@@ -6085,7 +6914,7 @@ export class CDoctorsApi extends BaseLoopBackApi {
    *
    * @param any nk Foreign key for BookingTypes.
    *
-   * @param object filter 
+   * @param object filter
    *
    * @returns object[] An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -6180,6 +7009,8 @@ export class CDoctorsApi extends BaseLoopBackApi {
   /**
    * Counts Clinics of CBookingTypes.
    *
+   * @param any id Doctors id
+   *
    * @param any nk Foreign key for BookingTypes.
    *
    * @param object where Criteria to match model instances
@@ -6190,12 +7021,316 @@ export class CDoctorsApi extends BaseLoopBackApi {
    *
    * Data properties:
    *
-   *  - `count` – `{number}` - 
+   *  - `count` – `{number}` -
    */
-  public __count__BookingTypes__Clinics(nk: any, where: any = undefined) {
+  public __count__BookingTypes__Clinics(id: any, nk: any, where: any = undefined) {
     let method: string = "GET";
 
     let url: string = this.getPath() + "/CDoctors/:id/BookingTypes/:nk/Clinics/count";
+    let urlParams: any = {
+      id: id,
+      nk: nk
+    };
+
+    let params: any = {};
+
+    let result = this.request(method, url, urlParams, params);
+    return result;
+  }
+
+  /**
+   * Fetches belongsTo relation BookingType.
+   *
+   * @param any id Doctors id
+   *
+   * @param any nk Foreign key for Rosters.
+   *
+   * @param boolean refresh
+   *
+   * @returns object An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * <em>
+   * (The remote method definition does not provide any description.
+   * This usually means the response is a `CDoctors` object.)
+   * </em>
+   */
+  public __get__Rosters__BookingType(id: any, nk: any, refresh: boolean = undefined) {
+    let method: string = "GET";
+
+    let url: string = this.getPath() + "/CDoctors/:id/Rosters/:nk/BookingType";
+    let urlParams: any = {
+      id: id,
+      nk: nk
+    };
+
+    let params: any = {};
+    if (refresh !== undefined) {
+      params.refresh = refresh;
+    }
+
+    let result = this.request(method, url, urlParams, params);
+    return result;
+  }
+
+  /**
+   * Fetches belongsTo relation Clinic.
+   *
+   * @param any id Doctors id
+   *
+   * @param any nk Foreign key for Rosters.
+   *
+   * @param boolean refresh
+   *
+   * @returns object An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * <em>
+   * (The remote method definition does not provide any description.
+   * This usually means the response is a `CDoctors` object.)
+   * </em>
+   */
+  public __get__Rosters__Clinic(id: any, nk: any, refresh: boolean = undefined) {
+    let method: string = "GET";
+
+    let url: string = this.getPath() + "/CDoctors/:id/Rosters/:nk/Clinic";
+    let urlParams: any = {
+      id: id,
+      nk: nk
+    };
+
+    let params: any = {};
+    if (refresh !== undefined) {
+      params.refresh = refresh;
+    }
+
+    let result = this.request(method, url, urlParams, params);
+    return result;
+  }
+
+  /**
+   * Find a related item by id for Calendars.
+   *
+   * @param any id Doctors id
+   *
+   * @param any nk Foreign key for Rosters.
+   *
+   * @param any fk Foreign key for Calendars
+   *
+   * @returns object An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * <em>
+   * (The remote method definition does not provide any description.
+   * This usually means the response is a `CDoctors` object.)
+   * </em>
+   */
+  public __findById__Rosters__Calendars(id: any, nk: any, fk: any) {
+    let method: string = "GET";
+
+    let url: string = this.getPath() + "/CDoctors/:id/Rosters/:nk/Calendars/:fk";
+    let urlParams: any = {
+      id: id,
+      nk: nk,
+      fk: fk
+    };
+
+    let params: any = {};
+
+    let result = this.request(method, url, urlParams, params);
+    return result;
+  }
+
+  /**
+   * Delete a related item by id for Calendars.
+   *
+   * @param any id Doctors id
+   *
+   * @param any nk Foreign key for Rosters.
+   *
+   * @param any fk Foreign key for Calendars
+   *
+   * @returns object An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * This method returns no data.
+   */
+  public __destroyById__Rosters__Calendars(id: any, nk: any, fk: any) {
+    let method: string = "DELETE";
+
+    let url: string = this.getPath() + "/CDoctors/:id/Rosters/:nk/Calendars/:fk";
+    let urlParams: any = {
+      id: id,
+      nk: nk,
+      fk: fk
+    };
+
+    let params: any = {};
+
+    let result = this.request(method, url, urlParams, params);
+    return result;
+  }
+
+  /**
+   * Update a related item by id for Calendars.
+   *
+   * @param any id Doctors id
+   *
+   * @param any nk Foreign key for Rosters.
+   *
+   * @param any fk Foreign key for Calendars
+   *
+   * @param object data Request data.
+   *
+   * This method expects a subset of model properties as request parameters.
+   *
+   * @returns object An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * <em>
+   * (The remote method definition does not provide any description.
+   * This usually means the response is a `CDoctors` object.)
+   * </em>
+   */
+  public __updateById__Rosters__Calendars(id: any, nk: any, fk: any, data: any = undefined) {
+    let method: string = "PUT";
+
+    let url: string = this.getPath() + "/CDoctors/:id/Rosters/:nk/Calendars/:fk";
+    let urlParams: any = {
+      id: id,
+      nk: nk,
+      fk: fk
+    };
+
+    let params: any = {};
+
+    let result = this.request(method, url, urlParams, params, data);
+    return result;
+  }
+
+  /**
+   * Queries Calendars of CRosters.
+   *
+   * @param any id Doctors id
+   *
+   * @param any nk Foreign key for Rosters.
+   *
+   * @param object filter
+   *
+   * @returns object[] An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * <em>
+   * (The remote method definition does not provide any description.
+   * This usually means the response is a `CDoctors` object.)
+   * </em>
+   */
+  public __get__Rosters__Calendars(id: any, nk: any, filter: LoopBackFilterInterface = undefined) {
+    let method: string = "GET";
+
+    let url: string = this.getPath() + "/CDoctors/:id/Rosters/:nk/Calendars";
+    let urlParams: any = {
+      id: id,
+      nk: nk
+    };
+
+    let params: any = {};
+    if (filter !== undefined) {
+      params.filter = filter;
+    }
+
+    let result = this.request(method, url, urlParams, params);
+    return result;
+  }
+
+  /**
+   * Creates a new instance in Calendars of this model.
+   *
+   * @param any id Doctors id
+   *
+   * @param any nk Foreign key for Rosters.
+   *
+   * @param object data Request data.
+   *
+   * This method expects a subset of model properties as request parameters.
+   *
+   * @returns object An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * <em>
+   * (The remote method definition does not provide any description.
+   * This usually means the response is a `CDoctors` object.)
+   * </em>
+   */
+  public __create__Rosters__Calendars(id: any, nk: any, data: any = undefined) {
+    let method: string = "POST";
+
+    let url: string = this.getPath() + "/CDoctors/:id/Rosters/:nk/Calendars";
+    let urlParams: any = {
+      id: id,
+      nk: nk
+    };
+
+    let params: any = {};
+
+    let result = this.request(method, url, urlParams, params, data);
+    return result;
+  }
+
+  /**
+   * Deletes all Calendars of this model.
+   *
+   * @param any id Doctors id
+   *
+   * @param any nk Foreign key for Rosters.
+   *
+   * @returns object An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * This method returns no data.
+   */
+  public __delete__Rosters__Calendars(id: any, nk: any) {
+    let method: string = "DELETE";
+
+    let url: string = this.getPath() + "/CDoctors/:id/Rosters/:nk/Calendars";
+    let urlParams: any = {
+      id: id,
+      nk: nk
+    };
+
+    let params: any = {};
+
+    let result = this.request(method, url, urlParams, params);
+    return result;
+  }
+
+  /**
+   * Counts Calendars of CRosters.
+   *
+   * @param any nk Foreign key for Rosters.
+   *
+   * @param object where Criteria to match model instances
+   *
+   * @returns object An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * Data properties:
+   *
+   *  - `count` – `{number}` -
+   */
+  public __count__Rosters__Calendars(nk: any, where: any = undefined) {
+    let method: string = "GET";
+
+    let url: string = this.getPath() + "/CDoctors/:id/Rosters/:nk/Calendars/count";
     let urlParams: any = {
       nk: nk
     };
@@ -6211,7 +7346,7 @@ export class CDoctorsApi extends BaseLoopBackApi {
    *
    * @param any id DoctorBookingTypes id
    *
-   * @param boolean refresh 
+   * @param boolean refresh
    *
    * @returns object An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -6244,7 +7379,7 @@ export class CDoctorsApi extends BaseLoopBackApi {
    *
    * @param any id DoctorClinics id
    *
-   * @param boolean refresh 
+   * @param boolean refresh
    *
    * @returns object An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -6371,7 +7506,7 @@ export class CDoctorsApi extends BaseLoopBackApi {
    *
    * @param any id Companies id
    *
-   * @param object filter 
+   * @param object filter
    *
    * @returns object[] An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -6501,7 +7636,7 @@ export class CDoctorsApi extends BaseLoopBackApi {
    *
    * Data properties:
    *
-   *  - `count` – `{number}` - 
+   *  - `count` – `{number}` -
    */
   public __count__CCompanies__Doctors(id: any, where: any = undefined) {
     let method: string = "GET";
@@ -6638,7 +7773,7 @@ export class CGalleryApi extends BaseLoopBackApi {
    *
    * Data properties:
    *
-   *  - `exists` – `{boolean}` - 
+   *  - `exists` – `{boolean}` -
    */
   public exists(id: any) {
     let method: string = "GET";
@@ -6817,7 +7952,7 @@ export class CGalleryApi extends BaseLoopBackApi {
    *
    * Data properties:
    *
-   *  - `count` – `{number}` - 
+   *  - `count` – `{number}` -
    */
   public count(where: any = undefined) {
     let method: string = "GET";
@@ -6872,7 +8007,7 @@ export class CGalleryApi extends BaseLoopBackApi {
    *
    * @param object data Request data.
    *
-   *  - `options` – `{object}` - 
+   *  - `options` – `{object}` -
    *
    * @returns object An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -6880,7 +8015,7 @@ export class CGalleryApi extends BaseLoopBackApi {
    *
    * Data properties:
    *
-   *  - `changes` – `{ReadableStream}` - 
+   *  - `changes` – `{ReadableStream}` -
    */
   public createChangeStream(options: any = undefined) {
     let method: string = "POST";
@@ -6994,7 +8129,7 @@ export class CGalleryApi extends BaseLoopBackApi {
    *
    * @param any id Companies id
    *
-   * @param object filter 
+   * @param object filter
    *
    * @returns object[] An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -7124,7 +8259,7 @@ export class CGalleryApi extends BaseLoopBackApi {
    *
    * Data properties:
    *
-   *  - `count` – `{number}` - 
+   *  - `count` – `{number}` -
    */
   public __count__CCompanies__Galleries(id: any, where: any = undefined) {
     let method: string = "GET";
@@ -7261,7 +8396,7 @@ export class CPeopleApi extends BaseLoopBackApi {
    *
    * Data properties:
    *
-   *  - `exists` – `{boolean}` - 
+   *  - `exists` – `{boolean}` -
    */
   public exists(id: any) {
     let method: string = "GET";
@@ -7440,7 +8575,7 @@ export class CPeopleApi extends BaseLoopBackApi {
    *
    * Data properties:
    *
-   *  - `count` – `{number}` - 
+   *  - `count` – `{number}` -
    */
   public count(where: any = undefined) {
     let method: string = "GET";
@@ -7495,7 +8630,7 @@ export class CPeopleApi extends BaseLoopBackApi {
    *
    * @param object data Request data.
    *
-   *  - `options` – `{object}` - 
+   *  - `options` – `{object}` -
    *
    * @returns object An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -7503,7 +8638,7 @@ export class CPeopleApi extends BaseLoopBackApi {
    *
    * Data properties:
    *
-   *  - `changes` – `{ReadableStream}` - 
+   *  - `changes` – `{ReadableStream}` -
    */
   public createChangeStream(options: any = undefined) {
     let method: string = "POST";
@@ -7523,7 +8658,7 @@ export class CPeopleApi extends BaseLoopBackApi {
    *
    * @param any id Doctors id
    *
-   * @param boolean refresh 
+   * @param boolean refresh
    *
    * @returns object An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -7650,7 +8785,7 @@ export class CPeopleApi extends BaseLoopBackApi {
    *
    * @param any id Doctors id
    *
-   * @param object filter 
+   * @param object filter
    *
    * @returns object[] An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -7780,7 +8915,7 @@ export class CPeopleApi extends BaseLoopBackApi {
    *
    * Data properties:
    *
-   *  - `count` – `{number}` - 
+   *  - `count` – `{number}` -
    */
   public __count__CDoctors__People(id: any, where: any = undefined) {
     let method: string = "GET";
@@ -7817,6 +8952,285 @@ export class CRostersApi extends BaseLoopBackApi {
     @Optional() @Inject(ErrorHandler) errorHandler: ErrorHandler
   ) {
     super(http, errorHandler);
+  }
+
+  /**
+   * Fetches belongsTo relation BookingType.
+   *
+   * @param any id Rosters id
+   *
+   * @param boolean refresh
+   *
+   * @returns object An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * <em>
+   * (The remote method definition does not provide any description.
+   * This usually means the response is a `CRosters` object.)
+   * </em>
+   */
+  public __get__BookingType(id: any, refresh: boolean = undefined) {
+    let method: string = "GET";
+
+    let url: string = this.getPath() + "/CRosters/:id/BookingType";
+    let urlParams: any = {
+      id: id
+    };
+
+    let params: any = {};
+    if (refresh !== undefined) {
+      params.refresh = refresh;
+    }
+
+    let result = this.request(method, url, urlParams, params);
+    return result;
+  }
+
+  /**
+   * Fetches belongsTo relation Clinic.
+   *
+   * @param any id Rosters id
+   *
+   * @param boolean refresh
+   *
+   * @returns object An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * <em>
+   * (The remote method definition does not provide any description.
+   * This usually means the response is a `CRosters` object.)
+   * </em>
+   */
+  public __get__Clinic(id: any, refresh: boolean = undefined) {
+    let method: string = "GET";
+
+    let url: string = this.getPath() + "/CRosters/:id/Clinic";
+    let urlParams: any = {
+      id: id
+    };
+
+    let params: any = {};
+    if (refresh !== undefined) {
+      params.refresh = refresh;
+    }
+
+    let result = this.request(method, url, urlParams, params);
+    return result;
+  }
+
+  /**
+   * Find a related item by id for Calendars.
+   *
+   * @param any id Rosters id
+   *
+   * @param any fk Foreign key for Calendars
+   *
+   * @returns object An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * <em>
+   * (The remote method definition does not provide any description.
+   * This usually means the response is a `CRosters` object.)
+   * </em>
+   */
+  public __findById__Calendars(id: any, fk: any) {
+    let method: string = "GET";
+
+    let url: string = this.getPath() + "/CRosters/:id/Calendars/:fk";
+    let urlParams: any = {
+      id: id,
+      fk: fk
+    };
+
+    let params: any = {};
+
+    let result = this.request(method, url, urlParams, params);
+    return result;
+  }
+
+  /**
+   * Delete a related item by id for Calendars.
+   *
+   * @param any id Rosters id
+   *
+   * @param any fk Foreign key for Calendars
+   *
+   * @returns object An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * This method returns no data.
+   */
+  public __destroyById__Calendars(id: any, fk: any) {
+    let method: string = "DELETE";
+
+    let url: string = this.getPath() + "/CRosters/:id/Calendars/:fk";
+    let urlParams: any = {
+      id: id,
+      fk: fk
+    };
+
+    let params: any = {};
+
+    let result = this.request(method, url, urlParams, params);
+    return result;
+  }
+
+  /**
+   * Update a related item by id for Calendars.
+   *
+   * @param any id Rosters id
+   *
+   * @param any fk Foreign key for Calendars
+   *
+   * @param object data Request data.
+   *
+   * This method expects a subset of model properties as request parameters.
+   *
+   * @returns object An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * <em>
+   * (The remote method definition does not provide any description.
+   * This usually means the response is a `CRosters` object.)
+   * </em>
+   */
+  public __updateById__Calendars(id: any, fk: any, data: any = undefined) {
+    let method: string = "PUT";
+
+    let url: string = this.getPath() + "/CRosters/:id/Calendars/:fk";
+    let urlParams: any = {
+      id: id,
+      fk: fk
+    };
+
+    let params: any = {};
+
+    let result = this.request(method, url, urlParams, params, data);
+    return result;
+  }
+
+  /**
+   * Queries Calendars of CRosters.
+   *
+   * @param any id Rosters id
+   *
+   * @param object filter
+   *
+   * @returns object[] An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * <em>
+   * (The remote method definition does not provide any description.
+   * This usually means the response is a `CRosters` object.)
+   * </em>
+   */
+  public __get__Calendars(id: any, filter: LoopBackFilterInterface = undefined) {
+    let method: string = "GET";
+
+    let url: string = this.getPath() + "/CRosters/:id/Calendars";
+    let urlParams: any = {
+      id: id
+    };
+
+    let params: any = {};
+    if (filter !== undefined) {
+      params.filter = filter;
+    }
+
+    let result = this.request(method, url, urlParams, params);
+    return result;
+  }
+
+  /**
+   * Creates a new instance in Calendars of this model.
+   *
+   * @param any id Rosters id
+   *
+   * @param object data Request data.
+   *
+   * This method expects a subset of model properties as request parameters.
+   *
+   * @returns object An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * <em>
+   * (The remote method definition does not provide any description.
+   * This usually means the response is a `CRosters` object.)
+   * </em>
+   */
+  public __create__Calendars(id: any, data: any = undefined) {
+    let method: string = "POST";
+
+    let url: string = this.getPath() + "/CRosters/:id/Calendars";
+    let urlParams: any = {
+      id: id
+    };
+
+    let params: any = {};
+
+    let result = this.request(method, url, urlParams, params, data);
+    return result;
+  }
+
+  /**
+   * Deletes all Calendars of this model.
+   *
+   * @param any id Rosters id
+   *
+   * @returns object An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * This method returns no data.
+   */
+  public __delete__Calendars(id: any) {
+    let method: string = "DELETE";
+
+    let url: string = this.getPath() + "/CRosters/:id/Calendars";
+    let urlParams: any = {
+      id: id
+    };
+
+    let params: any = {};
+
+    let result = this.request(method, url, urlParams, params);
+    return result;
+  }
+
+  /**
+   * Counts Calendars of CRosters.
+   *
+   * @param any id Rosters id
+   *
+   * @param object where Criteria to match model instances
+   *
+   * @returns object An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * Data properties:
+   *
+   *  - `count` – `{number}` -
+   */
+  public __count__Calendars(id: any, where: any = undefined) {
+    let method: string = "GET";
+
+    let url: string = this.getPath() + "/CRosters/:id/Calendars/count";
+    let urlParams: any = {
+      id: id
+    };
+
+    let params: any = {};
+
+    let result = this.request(method, url, urlParams, params);
+    return result;
   }
 
   /**
@@ -7917,7 +9331,7 @@ export class CRostersApi extends BaseLoopBackApi {
    *
    * Data properties:
    *
-   *  - `exists` – `{boolean}` - 
+   *  - `exists` – `{boolean}` -
    */
   public exists(id: any) {
     let method: string = "GET";
@@ -8096,7 +9510,7 @@ export class CRostersApi extends BaseLoopBackApi {
    *
    * Data properties:
    *
-   *  - `count` – `{number}` - 
+   *  - `count` – `{number}` -
    */
   public count(where: any = undefined) {
     let method: string = "GET";
@@ -8151,7 +9565,7 @@ export class CRostersApi extends BaseLoopBackApi {
    *
    * @param object data Request data.
    *
-   *  - `options` – `{object}` - 
+   *  - `options` – `{object}` -
    *
    * @returns object An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -8159,7 +9573,7 @@ export class CRostersApi extends BaseLoopBackApi {
    *
    * Data properties:
    *
-   *  - `changes` – `{ReadableStream}` - 
+   *  - `changes` – `{ReadableStream}` -
    */
   public createChangeStream(options: any = undefined) {
     let method: string = "POST";
@@ -8189,7 +9603,7 @@ export class CRostersApi extends BaseLoopBackApi {
    *
    * Data properties:
    *
-   *  - `rosters` – `{any}` - 
+   *  - `rosters` – `{any}` -
    */
   public generateRoster(def: any = undefined) {
     let method: string = "POST";
@@ -8303,7 +9717,7 @@ export class CRostersApi extends BaseLoopBackApi {
    *
    * @param any id Doctors id
    *
-   * @param object filter 
+   * @param object filter
    *
    * @returns object[] An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -8433,7 +9847,7 @@ export class CRostersApi extends BaseLoopBackApi {
    *
    * Data properties:
    *
-   *  - `count` – `{number}` - 
+   *  - `count` – `{number}` -
    */
   public __count__CDoctors__Rosters(id: any, where: any = undefined) {
     let method: string = "GET";
@@ -8570,7 +9984,7 @@ export class CRosterDaysApi extends BaseLoopBackApi {
    *
    * Data properties:
    *
-   *  - `exists` – `{boolean}` - 
+   *  - `exists` – `{boolean}` -
    */
   public exists(id: any) {
     let method: string = "GET";
@@ -8749,7 +10163,7 @@ export class CRosterDaysApi extends BaseLoopBackApi {
    *
    * Data properties:
    *
-   *  - `count` – `{number}` - 
+   *  - `count` – `{number}` -
    */
   public count(where: any = undefined) {
     let method: string = "GET";
@@ -8804,7 +10218,7 @@ export class CRosterDaysApi extends BaseLoopBackApi {
    *
    * @param object data Request data.
    *
-   *  - `options` – `{object}` - 
+   *  - `options` – `{object}` -
    *
    * @returns object An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -8812,7 +10226,7 @@ export class CRosterDaysApi extends BaseLoopBackApi {
    *
    * Data properties:
    *
-   *  - `changes` – `{ReadableStream}` - 
+   *  - `changes` – `{ReadableStream}` -
    */
   public createChangeStream(options: any = undefined) {
     let method: string = "POST";
@@ -8948,7 +10362,7 @@ export class CRosterPlacesApi extends BaseLoopBackApi {
    *
    * Data properties:
    *
-   *  - `exists` – `{boolean}` - 
+   *  - `exists` – `{boolean}` -
    */
   public exists(id: any) {
     let method: string = "GET";
@@ -9127,7 +10541,7 @@ export class CRosterPlacesApi extends BaseLoopBackApi {
    *
    * Data properties:
    *
-   *  - `count` – `{number}` - 
+   *  - `count` – `{number}` -
    */
   public count(where: any = undefined) {
     let method: string = "GET";
@@ -9182,7 +10596,7 @@ export class CRosterPlacesApi extends BaseLoopBackApi {
    *
    * @param object data Request data.
    *
-   *  - `options` – `{object}` - 
+   *  - `options` – `{object}` -
    *
    * @returns object An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -9190,7 +10604,7 @@ export class CRosterPlacesApi extends BaseLoopBackApi {
    *
    * Data properties:
    *
-   *  - `changes` – `{ReadableStream}` - 
+   *  - `changes` – `{ReadableStream}` -
    */
   public createChangeStream(options: any = undefined) {
     let method: string = "POST";
@@ -9326,7 +10740,7 @@ export class CReviewsApi extends BaseLoopBackApi {
    *
    * Data properties:
    *
-   *  - `exists` – `{boolean}` - 
+   *  - `exists` – `{boolean}` -
    */
   public exists(id: any) {
     let method: string = "GET";
@@ -9505,7 +10919,7 @@ export class CReviewsApi extends BaseLoopBackApi {
    *
    * Data properties:
    *
-   *  - `count` – `{number}` - 
+   *  - `count` – `{number}` -
    */
   public count(where: any = undefined) {
     let method: string = "GET";
@@ -9560,7 +10974,7 @@ export class CReviewsApi extends BaseLoopBackApi {
    *
    * @param object data Request data.
    *
-   *  - `options` – `{object}` - 
+   *  - `options` – `{object}` -
    *
    * @returns object An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -9568,7 +10982,7 @@ export class CReviewsApi extends BaseLoopBackApi {
    *
    * Data properties:
    *
-   *  - `changes` – `{ReadableStream}` - 
+   *  - `changes` – `{ReadableStream}` -
    */
   public createChangeStream(options: any = undefined) {
     let method: string = "POST";
@@ -9704,7 +11118,7 @@ export class CRosterTimesApi extends BaseLoopBackApi {
    *
    * Data properties:
    *
-   *  - `exists` – `{boolean}` - 
+   *  - `exists` – `{boolean}` -
    */
   public exists(id: any) {
     let method: string = "GET";
@@ -9883,7 +11297,7 @@ export class CRosterTimesApi extends BaseLoopBackApi {
    *
    * Data properties:
    *
-   *  - `count` – `{number}` - 
+   *  - `count` – `{number}` -
    */
   public count(where: any = undefined) {
     let method: string = "GET";
@@ -9938,7 +11352,7 @@ export class CRosterTimesApi extends BaseLoopBackApi {
    *
    * @param object data Request data.
    *
-   *  - `options` – `{object}` - 
+   *  - `options` – `{object}` -
    *
    * @returns object An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -9946,7 +11360,7 @@ export class CRosterTimesApi extends BaseLoopBackApi {
    *
    * Data properties:
    *
-   *  - `changes` – `{ReadableStream}` - 
+   *  - `changes` – `{ReadableStream}` -
    */
   public createChangeStream(options: any = undefined) {
     let method: string = "POST";
@@ -10365,7 +11779,7 @@ export class CClinicsApi extends BaseLoopBackApi {
    *
    * @param any id Clinics id
    *
-   * @param object filter 
+   * @param object filter
    *
    * @returns object[] An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -10463,7 +11877,7 @@ export class CClinicsApi extends BaseLoopBackApi {
    *
    * Data properties:
    *
-   *  - `count` – `{number}` - 
+   *  - `count` – `{number}` -
    */
   public __count__BookingTypes(id: any, where: any = undefined) {
     let method: string = "GET";
@@ -10484,7 +11898,7 @@ export class CClinicsApi extends BaseLoopBackApi {
    *
    * @param any id Clinics id
    *
-   * @param object filter 
+   * @param object filter
    *
    * @returns object[] An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -10582,7 +11996,7 @@ export class CClinicsApi extends BaseLoopBackApi {
    *
    * Data properties:
    *
-   *  - `count` – `{number}` - 
+   *  - `count` – `{number}` -
    */
   public __count__Doctors(id: any, where: any = undefined) {
     let method: string = "GET";
@@ -10696,7 +12110,7 @@ export class CClinicsApi extends BaseLoopBackApi {
    *
    * Data properties:
    *
-   *  - `exists` – `{boolean}` - 
+   *  - `exists` – `{boolean}` -
    */
   public exists(id: any) {
     let method: string = "GET";
@@ -10875,7 +12289,7 @@ export class CClinicsApi extends BaseLoopBackApi {
    *
    * Data properties:
    *
-   *  - `count` – `{number}` - 
+   *  - `count` – `{number}` -
    */
   public count(where: any = undefined) {
     let method: string = "GET";
@@ -10930,7 +12344,7 @@ export class CClinicsApi extends BaseLoopBackApi {
    *
    * @param object data Request data.
    *
-   *  - `options` – `{object}` - 
+   *  - `options` – `{object}` -
    *
    * @returns object An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -10938,7 +12352,7 @@ export class CClinicsApi extends BaseLoopBackApi {
    *
    * Data properties:
    *
-   *  - `changes` – `{ReadableStream}` - 
+   *  - `changes` – `{ReadableStream}` -
    */
   public createChangeStream(options: any = undefined) {
     let method: string = "POST";
@@ -11269,7 +12683,7 @@ export class CClinicsApi extends BaseLoopBackApi {
    *
    * @param any nk Foreign key for BookingTypes.
    *
-   * @param object filter 
+   * @param object filter
    *
    * @returns object[] An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -11376,7 +12790,7 @@ export class CClinicsApi extends BaseLoopBackApi {
    *
    * Data properties:
    *
-   *  - `count` – `{number}` - 
+   *  - `count` – `{number}` -
    */
   public __count__BookingTypes__CClinicBookingTypes(id: any, nk: any, where: any = undefined) {
     let method: string = "GET";
@@ -11400,7 +12814,7 @@ export class CClinicsApi extends BaseLoopBackApi {
    *
    * @param any nk Foreign key for BookingTypes.
    *
-   * @param object filter 
+   * @param object filter
    *
    * @returns object[] An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -11507,7 +12921,7 @@ export class CClinicsApi extends BaseLoopBackApi {
    *
    * Data properties:
    *
-   *  - `count` – `{number}` - 
+   *  - `count` – `{number}` -
    */
   public __count__BookingTypes__Clinics(id: any, nk: any, where: any = undefined) {
     let method: string = "GET";
@@ -11737,7 +13151,7 @@ export class CClinicsApi extends BaseLoopBackApi {
    *
    * @param any nk Foreign key for Doctors.
    *
-   * @param boolean refresh 
+   * @param boolean refresh
    *
    * @returns object An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -12185,7 +13599,7 @@ export class CClinicsApi extends BaseLoopBackApi {
    *
    * @param any nk Foreign key for Doctors.
    *
-   * @param object filter 
+   * @param object filter
    *
    * @returns object[] An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -12292,7 +13706,7 @@ export class CClinicsApi extends BaseLoopBackApi {
    *
    * Data properties:
    *
-   *  - `count` – `{number}` - 
+   *  - `count` – `{number}` -
    */
   public __count__Doctors__BookingTypes(id: any, nk: any, where: any = undefined) {
     let method: string = "GET";
@@ -12316,7 +13730,7 @@ export class CClinicsApi extends BaseLoopBackApi {
    *
    * @param any nk Foreign key for Doctors.
    *
-   * @param object filter 
+   * @param object filter
    *
    * @returns object[] An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -12423,7 +13837,7 @@ export class CClinicsApi extends BaseLoopBackApi {
    *
    * Data properties:
    *
-   *  - `count` – `{number}` - 
+   *  - `count` – `{number}` -
    */
   public __count__Doctors__People(id: any, nk: any, where: any = undefined) {
     let method: string = "GET";
@@ -12447,7 +13861,7 @@ export class CClinicsApi extends BaseLoopBackApi {
    *
    * @param any nk Foreign key for Doctors.
    *
-   * @param object filter 
+   * @param object filter
    *
    * @returns object[] An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -12554,7 +13968,7 @@ export class CClinicsApi extends BaseLoopBackApi {
    *
    * Data properties:
    *
-   *  - `count` – `{number}` - 
+   *  - `count` – `{number}` -
    */
   public __count__Doctors__Rosters(id: any, nk: any, where: any = undefined) {
     let method: string = "GET";
@@ -12578,7 +13992,7 @@ export class CClinicsApi extends BaseLoopBackApi {
    *
    * @param any nk Foreign key for Doctors.
    *
-   * @param object filter 
+   * @param object filter
    *
    * @returns object[] An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -12683,7 +14097,7 @@ export class CClinicsApi extends BaseLoopBackApi {
    *
    * Data properties:
    *
-   *  - `count` – `{number}` - 
+   *  - `count` – `{number}` -
    */
   public __count__Doctors__Clinics(nk: any, where: any = undefined) {
     let method: string = "GET";
@@ -12704,7 +14118,7 @@ export class CClinicsApi extends BaseLoopBackApi {
    *
    * @param any id ClinicBookingTypes id
    *
-   * @param boolean refresh 
+   * @param boolean refresh
    *
    * @returns object An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -12737,7 +14151,7 @@ export class CClinicsApi extends BaseLoopBackApi {
    *
    * @param any id DoctorClinics id
    *
-   * @param boolean refresh 
+   * @param boolean refresh
    *
    * @returns object An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -12752,6 +14166,39 @@ export class CClinicsApi extends BaseLoopBackApi {
     let method: string = "GET";
 
     let url: string = this.getPath() + "/CDoctorClinics/:id/Clinics";
+    let urlParams: any = {
+      id: id
+    };
+
+    let params: any = {};
+    if (refresh !== undefined) {
+      params.refresh = refresh;
+    }
+
+    let result = this.request(method, url, urlParams, params);
+    return result;
+  }
+
+  /**
+   * Fetches belongsTo relation Clinic.
+   *
+   * @param any id Rosters id
+   *
+   * @param boolean refresh
+   *
+   * @returns object An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * <em>
+   * (The remote method definition does not provide any description.
+   * This usually means the response is a `CClinics` object.)
+   * </em>
+   */
+  public __get__CRosters__Clinic(id: any, refresh: boolean = undefined) {
+    let method: string = "GET";
+
+    let url: string = this.getPath() + "/CRosters/:id/Clinic";
     let urlParams: any = {
       id: id
     };
@@ -12864,7 +14311,7 @@ export class CClinicsApi extends BaseLoopBackApi {
    *
    * @param any id Companies id
    *
-   * @param object filter 
+   * @param object filter
    *
    * @returns object[] An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -12994,7 +14441,7 @@ export class CClinicsApi extends BaseLoopBackApi {
    *
    * Data properties:
    *
-   *  - `count` – `{number}` - 
+   *  - `count` – `{number}` -
    */
   public __count__CCompanies__Clinics(id: any, where: any = undefined) {
     let method: string = "GET";
@@ -13320,7 +14767,7 @@ export class CCompaniesApi extends BaseLoopBackApi {
    *
    * @param any id Companies id
    *
-   * @param object filter 
+   * @param object filter
    *
    * @returns object[] An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -13418,7 +14865,7 @@ export class CCompaniesApi extends BaseLoopBackApi {
    *
    * Data properties:
    *
-   *  - `count` – `{number}` - 
+   *  - `count` – `{number}` -
    */
   public __count__Clinics(id: any, where: any = undefined) {
     let method: string = "GET";
@@ -13439,7 +14886,7 @@ export class CCompaniesApi extends BaseLoopBackApi {
    *
    * @param any id Companies id
    *
-   * @param object filter 
+   * @param object filter
    *
    * @returns object[] An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -13537,7 +14984,7 @@ export class CCompaniesApi extends BaseLoopBackApi {
    *
    * Data properties:
    *
-   *  - `count` – `{number}` - 
+   *  - `count` – `{number}` -
    */
   public __count__Galleries(id: any, where: any = undefined) {
     let method: string = "GET";
@@ -13558,7 +15005,7 @@ export class CCompaniesApi extends BaseLoopBackApi {
    *
    * @param any id Companies id
    *
-   * @param object filter 
+   * @param object filter
    *
    * @returns object[] An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -13656,7 +15103,7 @@ export class CCompaniesApi extends BaseLoopBackApi {
    *
    * Data properties:
    *
-   *  - `count` – `{number}` - 
+   *  - `count` – `{number}` -
    */
   public __count__Doctors(id: any, where: any = undefined) {
     let method: string = "GET";
@@ -13770,7 +15217,7 @@ export class CCompaniesApi extends BaseLoopBackApi {
    *
    * Data properties:
    *
-   *  - `exists` – `{boolean}` - 
+   *  - `exists` – `{boolean}` -
    */
   public exists(id: any) {
     let method: string = "GET";
@@ -13949,7 +15396,7 @@ export class CCompaniesApi extends BaseLoopBackApi {
    *
    * Data properties:
    *
-   *  - `count` – `{number}` - 
+   *  - `count` – `{number}` -
    */
   public count(where: any = undefined) {
     let method: string = "GET";
@@ -14004,7 +15451,7 @@ export class CCompaniesApi extends BaseLoopBackApi {
    *
    * @param object data Request data.
    *
-   *  - `options` – `{object}` - 
+   *  - `options` – `{object}` -
    *
    * @returns object An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -14012,7 +15459,7 @@ export class CCompaniesApi extends BaseLoopBackApi {
    *
    * Data properties:
    *
-   *  - `changes` – `{ReadableStream}` - 
+   *  - `changes` – `{ReadableStream}` -
    */
   public createChangeStream(options: any = undefined) {
     let method: string = "POST";
@@ -14042,7 +15489,7 @@ export class CCompaniesApi extends BaseLoopBackApi {
    *
    * Data properties:
    *
-   *  - `rosters` – `{any}` - 
+   *  - `rosters` – `{any}` -
    */
   public generateRoster(def: any = undefined) {
     let method: string = "POST";
@@ -14476,7 +15923,7 @@ export class CCompaniesApi extends BaseLoopBackApi {
    *
    * @param any nk Foreign key for Clinics.
    *
-   * @param object filter 
+   * @param object filter
    *
    * @returns object[] An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -14583,7 +16030,7 @@ export class CCompaniesApi extends BaseLoopBackApi {
    *
    * Data properties:
    *
-   *  - `count` – `{number}` - 
+   *  - `count` – `{number}` -
    */
   public __count__Clinics__BookingTypes(id: any, nk: any, where: any = undefined) {
     let method: string = "GET";
@@ -14607,7 +16054,7 @@ export class CCompaniesApi extends BaseLoopBackApi {
    *
    * @param any nk Foreign key for Clinics.
    *
-   * @param object filter 
+   * @param object filter
    *
    * @returns object[] An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -14714,7 +16161,7 @@ export class CCompaniesApi extends BaseLoopBackApi {
    *
    * Data properties:
    *
-   *  - `count` – `{number}` - 
+   *  - `count` – `{number}` -
    */
   public __count__Clinics__Doctors(id: any, nk: any, where: any = undefined) {
     let method: string = "GET";
@@ -14944,7 +16391,7 @@ export class CCompaniesApi extends BaseLoopBackApi {
    *
    * @param any nk Foreign key for Doctors.
    *
-   * @param boolean refresh 
+   * @param boolean refresh
    *
    * @returns object An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -15392,7 +16839,7 @@ export class CCompaniesApi extends BaseLoopBackApi {
    *
    * @param any nk Foreign key for Doctors.
    *
-   * @param object filter 
+   * @param object filter
    *
    * @returns object[] An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -15499,7 +16946,7 @@ export class CCompaniesApi extends BaseLoopBackApi {
    *
    * Data properties:
    *
-   *  - `count` – `{number}` - 
+   *  - `count` – `{number}` -
    */
   public __count__Doctors__BookingTypes(id: any, nk: any, where: any = undefined) {
     let method: string = "GET";
@@ -15523,7 +16970,7 @@ export class CCompaniesApi extends BaseLoopBackApi {
    *
    * @param any nk Foreign key for Doctors.
    *
-   * @param object filter 
+   * @param object filter
    *
    * @returns object[] An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -15630,7 +17077,7 @@ export class CCompaniesApi extends BaseLoopBackApi {
    *
    * Data properties:
    *
-   *  - `count` – `{number}` - 
+   *  - `count` – `{number}` -
    */
   public __count__Doctors__People(id: any, nk: any, where: any = undefined) {
     let method: string = "GET";
@@ -15654,7 +17101,7 @@ export class CCompaniesApi extends BaseLoopBackApi {
    *
    * @param any nk Foreign key for Doctors.
    *
-   * @param object filter 
+   * @param object filter
    *
    * @returns object[] An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -15761,7 +17208,7 @@ export class CCompaniesApi extends BaseLoopBackApi {
    *
    * Data properties:
    *
-   *  - `count` – `{number}` - 
+   *  - `count` – `{number}` -
    */
   public __count__Doctors__Rosters(id: any, nk: any, where: any = undefined) {
     let method: string = "GET";
@@ -15785,7 +17232,7 @@ export class CCompaniesApi extends BaseLoopBackApi {
    *
    * @param any nk Foreign key for Doctors.
    *
-   * @param object filter 
+   * @param object filter
    *
    * @returns object[] An empty reference that will be
    *   populated with the actual data once the response is returned
@@ -15890,7 +17337,7 @@ export class CCompaniesApi extends BaseLoopBackApi {
    *
    * Data properties:
    *
-   *  - `count` – `{number}` - 
+   *  - `count` – `{number}` -
    */
   public __count__Doctors__Clinics(nk: any, where: any = undefined) {
     let method: string = "GET";
@@ -15916,5 +17363,625 @@ export class CCompaniesApi extends BaseLoopBackApi {
   }
 }
 
+/**
+ * Api for the `CCalendars` model.
+ */
+@Injectable()
+export class CCalendarsApi extends BaseLoopBackApi {
+
+  constructor(
+    @Inject(Http) http: Http,
+    @Optional() @Inject(ErrorHandler) errorHandler: ErrorHandler
+  ) {
+    super(http, errorHandler);
+  }
+
+  /**
+   * Create a new instance of the model and persist it into the data source.
+   *
+   * @param object data Request data.
+   *
+   * This method expects a subset of model properties as request parameters.
+   *
+   * @returns object An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * <em>
+   * (The remote method definition does not provide any description.
+   * This usually means the response is a `CCalendars` object.)
+   * </em>
+   */
+  public create(data: any = undefined) {
+    let method: string = "POST";
+
+    let url: string = this.getPath() + "/CCalendars";
+    let urlParams: any = {
+    };
+
+    let params: any = {};
+
+    let result = this.request(method, url, urlParams, params, data);
+    return result;
+  }
+
+  /**
+   * Create a new instance of the model and persist it into the data source.
+   *
+   * @param object data Request data.
+   *
+   * This method expects a subset of model properties as request parameters.
+   *
+   * @returns object[] An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * <em>
+   * (The remote method definition does not provide any description.
+   * This usually means the response is a `CCalendars` object.)
+   * </em>
+   */
+  public createMany(data: any = undefined) {
+    let method: string = "POST";
+
+    let url: string = this.getPath() + "/CCalendars";
+    let urlParams: any = {
+    };
+
+    let params: any = {};
+
+    let result = this.request(method, url, urlParams, params, data);
+    return result;
+  }
+
+  /**
+   * Update an existing model instance or insert a new one into the data source.
+   *
+   * @param object data Request data.
+   *
+   * This method expects a subset of model properties as request parameters.
+   *
+   * @returns object An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * <em>
+   * (The remote method definition does not provide any description.
+   * This usually means the response is a `CCalendars` object.)
+   * </em>
+   */
+  public upsert(data: any = undefined) {
+    let method: string = "PUT";
+
+    let url: string = this.getPath() + "/CCalendars";
+    let urlParams: any = {
+    };
+
+    let params: any = {};
+
+    let result = this.request(method, url, urlParams, params, data);
+    return result;
+  }
+
+  /**
+   * Check whether a model instance exists in the data source.
+   *
+   * @param any id Model id
+   *
+   * @returns object An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * Data properties:
+   *
+   *  - `exists` – `{boolean}` -
+   */
+  public exists(id: any) {
+    let method: string = "GET";
+
+    let url: string = this.getPath() + "/CCalendars/:id/exists";
+    let urlParams: any = {
+      id: id
+    };
+
+    let params: any = {};
+
+    let result = this.request(method, url, urlParams, params);
+    return result;
+  }
+
+  /**
+   * Find a model instance by id from the data source.
+   *
+   * @param any id Model id
+   *
+   * @param object filter Filter defining fields and include
+   *
+   * @returns object An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * <em>
+   * (The remote method definition does not provide any description.
+   * This usually means the response is a `CCalendars` object.)
+   * </em>
+   */
+  public findById(id: any, filter: LoopBackFilterInterface = undefined) {
+    let method: string = "GET";
+
+    let url: string = this.getPath() + "/CCalendars/:id";
+    let urlParams: any = {
+      id: id
+    };
+
+    let params: any = {};
+    if (filter !== undefined) {
+      params.filter = filter;
+    }
+
+    let result = this.request(method, url, urlParams, params);
+    return result;
+  }
+
+  /**
+   * Find all instances of the model matched by filter from the data source.
+   *
+   * @param object filter Filter defining fields, where, include, order, offset, and limit
+   *
+   * @returns object[] An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * <em>
+   * (The remote method definition does not provide any description.
+   * This usually means the response is a `CCalendars` object.)
+   * </em>
+   */
+  public find(filter: LoopBackFilterInterface = undefined) {
+    let method: string = "GET";
+
+    let url: string = this.getPath() + "/CCalendars";
+    let urlParams: any = {
+    };
+
+    let params: any = {};
+    if (filter !== undefined) {
+      params.filter = filter;
+    }
+
+    let result = this.request(method, url, urlParams, params);
+    return result;
+  }
+
+  /**
+   * Find first instance of the model matched by filter from the data source.
+   *
+   * @param object filter Filter defining fields, where, include, order, offset, and limit
+   *
+   * @returns object An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * <em>
+   * (The remote method definition does not provide any description.
+   * This usually means the response is a `CCalendars` object.)
+   * </em>
+   */
+  public findOne(filter: LoopBackFilterInterface = undefined) {
+    let method: string = "GET";
+
+    let url: string = this.getPath() + "/CCalendars/findOne";
+    let urlParams: any = {
+    };
+
+    let params: any = {};
+    if (filter !== undefined) {
+      params.filter = filter;
+    }
+
+    let result = this.request(method, url, urlParams, params);
+    return result;
+  }
+
+  /**
+   * Update instances of the model matched by where from the data source.
+   *
+   * @param object where Criteria to match model instances
+   *
+   * @param object data Request data.
+   *
+   * This method expects a subset of model properties as request parameters.
+   *
+   * @returns object An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * The number of instances updated
+   */
+  public updateAll(where: any = undefined, data: any = undefined) {
+    let method: string = "POST";
+
+    let url: string = this.getPath() + "/CCalendars/update";
+    let urlParams: any = {
+    };
+
+    let params: any = {};
+    if (where !== undefined) {
+      params.where = where;
+    }
+
+    let result = this.request(method, url, urlParams, params, data);
+    return result;
+  }
+
+  /**
+   * Delete a model instance by id from the data source.
+   *
+   * @param any id Model id
+   *
+   * @returns object An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * <em>
+   * (The remote method definition does not provide any description.
+   * This usually means the response is a `CCalendars` object.)
+   * </em>
+   */
+  public deleteById(id: any) {
+    let method: string = "DELETE";
+
+    let url: string = this.getPath() + "/CCalendars/:id";
+    let urlParams: any = {
+      id: id
+    };
+
+    let params: any = {};
+
+    let result = this.request(method, url, urlParams, params);
+    return result;
+  }
+
+  /**
+   * Count instances of the model matched by where from the data source.
+   *
+   * @param object where Criteria to match model instances
+   *
+   * @returns object An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * Data properties:
+   *
+   *  - `count` – `{number}` -
+   */
+  public count(where: any = undefined) {
+    let method: string = "GET";
+
+    let url: string = this.getPath() + "/CCalendars/count";
+    let urlParams: any = {
+    };
+
+    let params: any = {};
+    if (where !== undefined) {
+      params.where = where;
+    }
+
+    let result = this.request(method, url, urlParams, params);
+    return result;
+  }
+
+  /**
+   * Update attributes for a model instance and persist it into the data source.
+   *
+   * @param any id Calendars id
+   *
+   * @param object data Request data.
+   *
+   * This method expects a subset of model properties as request parameters.
+   *
+   * @returns object An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * <em>
+   * (The remote method definition does not provide any description.
+   * This usually means the response is a `CCalendars` object.)
+   * </em>
+   */
+  public updateAttributes(id: any, data: any = undefined) {
+    let method: string = "PUT";
+
+    let url: string = this.getPath() + "/CCalendars/:id";
+    let urlParams: any = {
+      id: id
+    };
+
+    let params: any = {};
+
+    let result = this.request(method, url, urlParams, params, data);
+    return result;
+  }
+
+  /**
+   * Create a change stream.
+   *
+   * @param object data Request data.
+   *
+   *  - `options` – `{object}` -
+   *
+   * @returns object An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * Data properties:
+   *
+   *  - `changes` – `{ReadableStream}` -
+   */
+  public createChangeStream(options: any = undefined) {
+    let method: string = "POST";
+
+    let url: string = this.getPath() + "/CCalendars/change-stream";
+    let urlParams: any = {
+    };
+
+    let params: any = {};
+
+    let result = this.request(method, url, urlParams, params, options);
+    return result;
+  }
+
+  /**
+   * Find a related item by id for Calendars.
+   *
+   * @param any id Rosters id
+   *
+   * @param any fk Foreign key for Calendars
+   *
+   * @returns object An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * <em>
+   * (The remote method definition does not provide any description.
+   * This usually means the response is a `CCalendars` object.)
+   * </em>
+   */
+  public __findById__CRosters__Calendars(id: any, fk: any) {
+    let method: string = "GET";
+
+    let url: string = this.getPath() + "/CRosters/:id/Calendars/:fk";
+    let urlParams: any = {
+      id: id,
+      fk: fk
+    };
+
+    let params: any = {};
+
+    let result = this.request(method, url, urlParams, params);
+    return result;
+  }
+
+  /**
+   * Delete a related item by id for Calendars.
+   *
+   * @param any id Rosters id
+   *
+   * @param any fk Foreign key for Calendars
+   *
+   * @returns object An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * This method returns no data.
+   */
+  public __destroyById__CRosters__Calendars(id: any, fk: any) {
+    let method: string = "DELETE";
+
+    let url: string = this.getPath() + "/CRosters/:id/Calendars/:fk";
+    let urlParams: any = {
+      id: id,
+      fk: fk
+    };
+
+    let params: any = {};
+
+    let result = this.request(method, url, urlParams, params);
+    return result;
+  }
+
+  /**
+   * Update a related item by id for Calendars.
+   *
+   * @param any id Rosters id
+   *
+   * @param any fk Foreign key for Calendars
+   *
+   * @param object data Request data.
+   *
+   * This method expects a subset of model properties as request parameters.
+   *
+   * @returns object An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * <em>
+   * (The remote method definition does not provide any description.
+   * This usually means the response is a `CCalendars` object.)
+   * </em>
+   */
+  public __updateById__CRosters__Calendars(id: any, fk: any, data: any = undefined) {
+    let method: string = "PUT";
+
+    let url: string = this.getPath() + "/CRosters/:id/Calendars/:fk";
+    let urlParams: any = {
+      id: id,
+      fk: fk
+    };
+
+    let params: any = {};
+
+    let result = this.request(method, url, urlParams, params, data);
+    return result;
+  }
+
+  /**
+   * Queries Calendars of CRosters.
+   *
+   * @param any id Rosters id
+   *
+   * @param object filter
+   *
+   * @returns object[] An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * <em>
+   * (The remote method definition does not provide any description.
+   * This usually means the response is a `CCalendars` object.)
+   * </em>
+   */
+  public __get__CRosters__Calendars(id: any, filter: LoopBackFilterInterface = undefined) {
+    let method: string = "GET";
+
+    let url: string = this.getPath() + "/CRosters/:id/Calendars";
+    let urlParams: any = {
+      id: id
+    };
+
+    let params: any = {};
+    if (filter !== undefined) {
+      params.filter = filter;
+    }
+
+    let result = this.request(method, url, urlParams, params);
+    return result;
+  }
+
+  /**
+   * Creates a new instance in Calendars of this model.
+   *
+   * @param any id Rosters id
+   *
+   * @param object data Request data.
+   *
+   * This method expects a subset of model properties as request parameters.
+   *
+   * @returns object An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * <em>
+   * (The remote method definition does not provide any description.
+   * This usually means the response is a `CCalendars` object.)
+   * </em>
+   */
+  public __create__CRosters__Calendars(id: any, data: any = undefined) {
+    let method: string = "POST";
+
+    let url: string = this.getPath() + "/CRosters/:id/Calendars";
+    let urlParams: any = {
+      id: id
+    };
+
+    let params: any = {};
+
+    let result = this.request(method, url, urlParams, params, data);
+    return result;
+  }
+
+  /**
+   * Creates a new instance in Calendars of this model.
+   *
+   * @param any id Rosters id
+   *
+   * @param object data Request data.
+   *
+   * This method expects a subset of model properties as request parameters.
+   *
+   * @returns object[] An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * <em>
+   * (The remote method definition does not provide any description.
+   * This usually means the response is a `CCalendars` object.)
+   * </em>
+   */
+  public __createMany__CRosters__Calendars(id: any, data: any = undefined) {
+    let method: string = "POST";
+
+    let url: string = this.getPath() + "/CRosters/:id/Calendars";
+    let urlParams: any = {
+      id: id
+    };
+
+    let params: any = {};
+
+    let result = this.request(method, url, urlParams, params, data);
+    return result;
+  }
+
+  /**
+   * Deletes all Calendars of this model.
+   *
+   * @param any id Rosters id
+   *
+   * @returns object An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * This method returns no data.
+   */
+  public __delete__CRosters__Calendars(id: any) {
+    let method: string = "DELETE";
+
+    let url: string = this.getPath() + "/CRosters/:id/Calendars";
+    let urlParams: any = {
+      id: id
+    };
+
+    let params: any = {};
+
+    let result = this.request(method, url, urlParams, params);
+    return result;
+  }
+
+  /**
+   * Counts Calendars of CRosters.
+   *
+   * @param any id Rosters id
+   *
+   * @param object where Criteria to match model instances
+   *
+   * @returns object An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * Data properties:
+   *
+   *  - `count` – `{number}` -
+   */
+  public __count__CRosters__Calendars(id: any, where: any = undefined) {
+    let method: string = "GET";
+
+    let url: string = this.getPath() + "/CRosters/:id/Calendars/count";
+    let urlParams: any = {
+      id: id
+    };
+
+    let params: any = {};
+
+    let result = this.request(method, url, urlParams, params);
+    return result;
+  }
 
 
+  /**
+   * The name of the model represented by this $resource,
+   * i.e. `CCalendars`.
+   */
+  public getModelName() {
+    return "CCalendars";
+  }
+}
